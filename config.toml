@@ -1,4 +1,4 @@
-baseURL = "https://izdwuut.github.io/"
+baseURL = "/"
 languageCode = "en-us"
 title = "izdwuut's personal place"
 theme = "hugo-paper"
