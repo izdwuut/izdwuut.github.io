@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My New Hugo Site</title>
+    <link>http://example.org/posts/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Sep 2018 13:11:29 +0200</lastBuildDate>
+    
+	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My First Post</title>
+      <link>http://example.org/posts/my-first-post/</link>
+      <pubDate>Tue, 04 Sep 2018 13:11:29 +0200</pubDate>
+      
+      <guid>http://example.org/posts/my-first-post/</guid>
+      <description>Hi! 1 2 3 4 5 6 7 8 9 10  import steam from configparser import ConfigParser settings = ConfigParser() settings.read(&amp;#39;settings.ini&amp;#39;) api = steam.WebAPI(settings[&amp;#39;steam&amp;#39;][&amp;#39;api_key&amp;#39;]) username = &amp;#34;izdwuut&amp;#34; steam_id = api.call(&amp;#39;ISteamUser.ResolveVanityURL&amp;#39;, vanityurl=username)[&amp;#39;response&amp;#39;][&amp;#39;steamid&amp;#39;] level = api.call(&amp;#39;IPlayerService.GetSteamLevel&amp;#39;, steamid=steam_id)[&amp;#39;response&amp;#39;][&amp;#39;player_level&amp;#39;] print(&amp;#34;Twoj poziom na Steamie: &amp;#34; + str(level) + &amp;#34;.&amp;#34;)</description>
+    </item>
+    
+  </channel>
+</rss>
