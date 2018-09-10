@@ -1,0 +1,4 @@
+baseURL = "https://izdwuut.github.io/"
+languageCode = "en-us"
+title = "izdwuut's personal place"
+theme = "hugo-paper"
