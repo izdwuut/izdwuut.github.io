@@ -1,0 +1,12 @@
+<button type="button" onclick="toggleNav()" class="menu-toggle"></button>
+<nav class="sidenav" id="mySidenav" >
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+  <ul>
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.main }}
+    <li class="{{ if $currentPage.IsMenuCurrent `main` . }}active{{ end }}">
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</nav>
