@@ -1,6 +1,7 @@
 remote="origin"
 branch="master"
 dir="public"
+theme="hugo-paper"
 if [[ $(git status -s) ]]
 then
     echo "The working directory is dirty. Please commit any pending changes."
@@ -20,7 +21,7 @@ git worktree add -B $branch $dir $remote/$branch
 # rm -rf $dir/*
 
 echo "Generating site."
-hugo
+hugo -t $theme
 
 echo "Updating gh-pages branch"
 if [ $# -eq 0 ] then
