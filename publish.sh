@@ -24,7 +24,7 @@ echo "Generating site."
 hugo -t $theme
 
 echo "Updating gh-pages branch"
-if [ $# -eq 0 ] then
+if [ $# -eq 0 ]; then
 	date=`date '+%Y-%m-%d %H:%M:%S'`
 	msg="Add generated site as of $date."
 else
