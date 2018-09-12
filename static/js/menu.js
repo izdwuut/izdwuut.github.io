@@ -1,4 +1,4 @@
-var $body = $('body')
+var $body = $('body');
 var $nav = $("#mySidenav");
 
 function openNav() {
@@ -11,11 +11,27 @@ function closeNav() {
     $body.css("background-color", "white");
 } 
 
-var $toggle = $('.menu-toggle, .closebtn');
+var openBtn = '.menu-toggle';
+var $toggle = $(openBtn + ', .closebtn');
 
 function addMenuListener() {
-    $toggle.click(function() {
+    $toggle.click(() => {
         $body.toggleClass('noscroll');
     });
 }
 addMenuListener();
+
+function closeMenuOnBodyClick() {
+    $(document).click(() => {
+        closeNav()
+    });
+      
+    $nav.click(e => {
+        e.stopPropagation();
+    });
+    
+    $(openBtn).click(e => {
+        e.stopPropagation();
+    });
+}
+closeMenuOnBodyClick();
