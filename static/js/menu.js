@@ -1,14 +1,15 @@
 var $body = $('body');
 var $nav = $("#mySidenav");
+var $overlay = $('#overlay')
 
 function openNav() {
     $nav.width(250);
-    $body.css("background-color", "rgba(0,0,0,0.4)");
+    $overlay.toggle();
 }
 
 function closeNav() {
     $nav.width(0);
-    $body.css("background-color", "white");
+    $overlay.toggle();
 } 
 
 var openBtn = '.menu-toggle';
@@ -22,7 +23,7 @@ function addMenuListener() {
 addMenuListener();
 
 function closeMenuOnBodyClick() {
-    $(document).click(() => {
+    $overlay.click(() => {
         closeNav()
     });
       
