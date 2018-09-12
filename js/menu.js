@@ -1,24 +1,38 @@
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
-function openNav($nav, $body) {
+var $body = $('body');
+var $nav = $("#mySidenav");
+var $overlay = $('#overlay')
+
+function openNav() {
     $nav.width(250);
-    $body.css("background-color", "rgba(0,0,0,0.4)");
+    $overlay.toggle();
 }
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-function closeNav($nav, $body) {
+function closeNav() {
     $nav.width(0);
-    $body.css("background-color", "white");
+    $overlay.toggle();
 } 
 
-function toggleNav() {
-    var $nav = $("#mySidenav");
-    var $body = $("body")
-    if ($nav.width()) {
-        closeNav($nav, $body);
-    } else {
-        openNav($nav, $body);
-    }
-    
+var openBtn = '.menu-toggle';
+var $toggle = $(openBtn + ', .closebtn');
+
+function addMenuListener() {
+    $toggle.click(() => {
+        $body.toggleClass('noscroll');
+    });
 }
-// document.getElementById("mySidenav").style.width = "0";
-// console.log( document.getElementById("mySidenav").style.width);
+addMenuListener();
+
+function closeMenuOnBodyClick() {
+    $overlay.click(() => {
+        closeNav()
+    });
+      
+    $nav.click(e => {
+        e.stopPropagation();
+    });
+    
+    $(openBtn).click(e => {
+        e.stopPropagation();
+    });
+}
+closeMenuOnBodyClick();

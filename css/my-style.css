@@ -1,7 +1,22 @@
 /* Body
 ============================================================= */
+body:before, body:after {
+  content: "";
+  position: fixed;
+  background: black;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+body:before {
+  top: 0;
+}
+body:after {
+  bottom: 0;
+}
 body {
-  border: 15px black solid;
+  border-left: 10px solid black;
+  border-right: 10px solid black;  
 }
 /* Header
 ============================================================= */
@@ -10,42 +25,36 @@ body {
   background: black;
   color: white;
 }
+
+.header {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.menu-toggle {
+  margin-left: 15px;
+  margin-right: 35px;
+  z-index: 1;
+}
 .menu-toggle::before,
 .menu-toggle::after {
   background: white;
 }
+
+
+.noscroll .menu-toggle::before {
+  transform: translate3d(-50%, -5px, 0);
+}
+.noscroll .menu-toggle::after {
+  transform: translate3d(-50%, 5px, 0);
+}
+
 .home {
   background: #fff;
 }
 .menu ul {
   background: black;
 }
-
-.menu-toggle {
-  left: 0;
-}
-/* 
-.menu ul {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-} */
-
-
-
-
-
-
-
-
 
  /* The side navigation menu */
  .sidenav {
@@ -55,14 +64,14 @@ body {
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: black; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sidenav li a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -99,4 +108,14 @@ body {
 
 .first-entry {
   background: inherit;
+}
+
+#overlay {
+  display: none;
+	background-color: rgba(0,0,0,0.4);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
