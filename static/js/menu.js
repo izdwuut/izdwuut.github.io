@@ -17,3 +17,13 @@ function toggleNav() {
         openNav($nav, $body);
     }
 }
+
+var $toggle = $('.menu-toggle, .closebtn');
+var $body = $('body')
+
+function addMenuListener() {
+    $toggle.click(function() {
+        $body.toggleClass('noscroll');
+    });
+}
+addMenuListener();
