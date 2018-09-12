@@ -1,6 +1,6 @@
-<button type="button" onclick="toggleNav()" class="menu-toggle"></button>
+<button type="button" onclick="openNav()" class="menu-toggle"></button>
 <nav class="sidenav" id="mySidenav" >
-  <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <ul>
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
