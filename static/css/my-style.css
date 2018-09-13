@@ -119,3 +119,11 @@ body {
   top: 0;
   left: 0;
 }
+a {
+  text-decoration: underline;
+  text-decoration-color: darkgray;
+}
+
+a:hover {
+  color: darkgray;
+}
