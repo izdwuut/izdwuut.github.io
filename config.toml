@@ -2,3 +2,7 @@ baseURL = ""
 languageCode = "en-us"
 title = "izdwuut's personal place"
 theme = "hugo-paper"
+
+[params]
+    githubProfile = "https://github.com/izdwuut"
+    sources = "https://github.com/izdwuut/izdwuut.github.io/tree/dev"

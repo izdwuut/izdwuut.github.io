@@ -119,6 +119,11 @@ body {
   top: 0;
   left: 0;
 }
+
+.heart {
+  color: red;
+}
+
 a {
   text-decoration: underline;
   text-decoration-color: darkgray;
@@ -126,4 +131,16 @@ a {
 
 a:hover {
   color: darkgray;
+}
+
+.service-logo {
+  height: 15px;
+}
+
+.title a {
+  text-decoration: none;
+}
+
+.title a:hover {
+  color: white;
 }
