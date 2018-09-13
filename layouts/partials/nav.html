@@ -8,5 +8,10 @@
       <a href="{{ .URL }}">{{ .Name }}</a>
     </li>
     {{ end }}
+    {{ with .Site.GetPage "/about" }}
+    <li>
+        <a href="{{ .URL }}">About me</a>
+    </li>
+    {{ end }}
   </ul>
 </nav>
