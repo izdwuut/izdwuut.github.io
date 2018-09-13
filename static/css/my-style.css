@@ -144,3 +144,7 @@ a:hover {
 .title a:hover {
   color: white;
 }
+
+.cd {
+  text-align: center;
+}
