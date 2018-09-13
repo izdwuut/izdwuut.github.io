@@ -143,6 +143,11 @@ a:hover {
   text-align: center;
 }
 
+.post-content, .post-summary {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .first-entry {
   background: white;
 }
