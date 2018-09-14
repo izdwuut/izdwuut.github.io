@@ -6,18 +6,19 @@
     <description>Recent content in Posts on izdwuut&#39;s personal place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Sep 2018 13:11:29 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 14 Sep 2018 13:26:33 +0200</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>My First Post</title>
-      <link>/posts/my-first-post/</link>
-      <pubDate>Tue, 04 Sep 2018 13:11:29 +0200</pubDate>
+      <title>IS THIS THING RECORD O hi there!</title>
+      <link>/posts/hello/</link>
+      <pubDate>Fri, 14 Sep 2018 13:26:33 +0200</pubDate>
       
-      <guid>/posts/my-first-post/</guid>
-      <description>Hi! 1 2 3 4 5 6 7 8 9 10  import steamfrom configparser import ConfigParsersettings = ConfigParser()settings.read(&amp;#39;settings.ini&amp;#39;)api = steam.WebAPI(settings[&amp;#39;steam&amp;#39;][&amp;#39;api_key&amp;#39;])username = &amp;#34;izdwuut&amp;#34;steam_id = api.call(&amp;#39;ISteamUser.ResolveVanityURL&amp;#39;, vanityurl=username)[&amp;#39;response&amp;#39;][&amp;#39;steamid&amp;#39;]level = api.call(&amp;#39;IPlayerService.GetSteamLevel&amp;#39;, steamid=steam_id)[&amp;#39;response&amp;#39;][&amp;#39;player_level&amp;#39;]print(&amp;#34;Twoj poziom na Steamie: &amp;#34; + str(level) + &amp;#34;.&amp;#34;)</description>
+      <guid>/posts/hello/</guid>
+      <description>Hello world! I&amp;rsquo;m Bartosz. Now that I have your attention, why don&amp;rsquo;t you follow this inconspicuous and harmless link and click OK in every window that appear on your screen? Much obliged.
+This is it! My much awaited blog. Admit it, you was looking forward to check out what nonsensical thoughts I managed to came up with. Wait until you see my prime time commercials. I think (I hope) that it&amp;rsquo;s safe to say that I&amp;rsquo;m going to dedicate this place to some programming-related stuff.</description>
     </item>
     
   </channel>
