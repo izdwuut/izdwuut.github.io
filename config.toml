@@ -6,3 +6,4 @@ theme = "hugo-paper"
 [params]
     githubProfile = "https://github.com/izdwuut"
     sources = "https://github.com/izdwuut/izdwuut.github.io/tree/dev"
+    dateForm = "2006-01-02"
