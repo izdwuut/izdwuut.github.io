@@ -151,3 +151,8 @@ a:hover {
 .first-entry {
   background: white;
 }
+
+.post-meta {
+  font-style: italic;
+  color: lightgray;
+}
