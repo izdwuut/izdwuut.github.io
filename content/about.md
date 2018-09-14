@@ -8,6 +8,6 @@ type: "page"
 
 Phew. Not so big of a burden when you decide to finally throw it out. Katharsis of sorts.
 
-Oh, and I was also an avid black metal fan but I discovered that it made my acne go haywire. Ever heard about plants growing stronger while on some classical tunes? It was that, I'm certain. The fact that I still look like a Minesweeper ad is the whole different story and there is no corellation whatsoever. Now I'm more into pop or anything with over 30 millions views on YT in particular. I think that it makes me feel a lot saner. But hey, let me know if [Mgła](https://www.youtube.com/watch?v=Dt5_hI3ySCw) has released a new odiferous miasma. 
+Oh, and I was also an avid black metal fan but I discovered that it made my acne go haywire. Ever heard about plants growing stronger while exposed to some classical tunes? It surely was that, I'm certain. The fact that I still look like a Minesweeper ad after withdrawing it is the whole different story and there is no corellation whatsoever. Now I'm more into pop or anything with over 30 millions views on YT in particular. I feel that it makes me a whole lot saner. But hey, let me know if [Mgła](https://www.youtube.com/watch?v=Dt5_hI3ySCw) has released a new odiferous miasma so I can book some ritual bloodletting.
 
 Fast-forward to today, I'm a programmer. Not too big of a personal growth now, is it?
