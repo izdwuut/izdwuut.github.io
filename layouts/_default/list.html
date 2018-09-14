@@ -22,7 +22,7 @@
   </header>
   <p class="post-summary">{{ .Summary | plainify | htmlUnescape }}...</p>
   <footer class="post-footer">
-      {{ partial "meta/meta.html" . }}
+      {{ partial "meta.html" . }}
   </footer>
   <a class="post-link" href="{{ .Permalink }}"></a>
 </article>
