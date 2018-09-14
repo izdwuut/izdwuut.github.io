@@ -14,10 +14,11 @@ body:before {
 }
 body:after {
   bottom: 0;
+  z-index: 15;
 }
 body {
   border-left: 10px solid black;
-  border-right: 10px solid black;  
+  border-right: 10px solid black;
 }
 /* Header
 ============================================================= */
