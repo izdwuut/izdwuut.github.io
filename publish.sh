@@ -4,8 +4,11 @@ dir="public"
 theme="hugo-paper"
 if [[ $(git status -s) ]]
 then
-    echo "The working directory is dirty. Please commit any pending changes."
-    exit 1;
+    echo "The working directory is dirty. Proceed? y/n"
+	read decision
+	if [[ "$decision" != "y" ]]; then
+		exit 1;
+	fi
 fi
 
 echo "Deleting old publication."
