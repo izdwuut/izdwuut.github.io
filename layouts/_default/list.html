@@ -22,7 +22,7 @@
   </header>
   <p class="post-summary">{{ .Summary | plainify | htmlUnescape }}...</p>
   <footer class="post-footer">
-    <p class="post-meta">{{ .PublishDate.Format .Site.Params.DateForm }}</p>
+      {{ partial "meta/meta.html" . }}
   </footer>
   <a class="post-link" href="{{ .Permalink }}"></a>
 </article>
