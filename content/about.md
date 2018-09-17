@@ -14,4 +14,5 @@ Fast-forward to today, I'm a programmer. Not too big of a personal growth now, i
 
 You can reach out to me through the following channels:
 
-* [E-mail](mailto:izdwuut@gmail.com)
+* [E-mail](mailto:izdwuut@gmail.com).
+* Carrier pigeon, although packet loss rate is relatively high.
