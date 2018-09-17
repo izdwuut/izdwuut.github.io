@@ -1,5 +1,5 @@
 ---
-title: "This what you waited for. Create your own Youtube thumbnail Downloader in Python!"
+title: "This is what you waited for. Create your own Youtube thumbnail Downloader in Python!"
 draft: true
 topics:
     - "HTTP requests"
