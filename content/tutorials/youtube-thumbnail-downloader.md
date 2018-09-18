@@ -68,6 +68,6 @@ service = build(**params)
 ```
 service = build(developerKey='YOUR_API_KEY', serviceName='youtube', version='v3')
 ```
-I know, right? Given [keyword arguments](https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments) order is not important, it makes for some flexible function calls. It rocks... until you have to mock it. Or maybe it's just me?
+I know, right? Given [keyword arguments](https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments) order is not important, it makes for some flexible function calls. It rocks... until you have to [mock](https://docs.python.org/3/library/unittest.mock.html) it. Or maybe it's just me?
 
 Great success! You have just builded your wrapper object!
