@@ -114,8 +114,9 @@ body {
   left: 0;
 }
 
-.heart {
-  color: red;
+.heart::before {
+  content: "❤";
+  color: red
 }
 
 a {
