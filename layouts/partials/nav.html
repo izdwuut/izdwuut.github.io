@@ -4,14 +4,20 @@
   <ul>
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
+    
+    <li class="{{ if $currentPage.IsMenuCurrent `main` . }}active{{ end }}">
+        <a href="{{ .URL }}">{{ .Name }}</a>
+    </li>
+    {{ end }}<!--
+    {{ with .Site.GetPage "/tutorials" }}
     <li>
-      <a href="{{ .URL }}">{{ .Name }}</a>
+        <a href="{{ .URL }}">Home</a>
     </li>
     {{ end }}
     {{ with .Site.GetPage "/about" }}
     <li>
         <a href="{{ .URL }}">About me</a>
     </li>
-    {{ end }}
+    {{ end }} -->
   </ul>
 </nav>
