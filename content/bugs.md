@@ -1,7 +1,7 @@
 ---
 title: "Bugs and features"
 date: 2018-09-18T12:32:17+02:00
-draft: true
+draft: false
 type: "list"
 layout: "bugs"
 ---
