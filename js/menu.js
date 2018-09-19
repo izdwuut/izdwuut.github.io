@@ -5,22 +5,18 @@ var $overlay = $('#overlay')
 function openNav() {
     $nav.width(250);
     $overlay.toggle();
+    toggleScroll()
 }
 
 function closeNav() {
     $nav.width(0);
     $overlay.toggle();
+    toggleScroll();
 } 
 
-var openBtn = '.menu-toggle';
-var $toggle = $(openBtn + ', .closebtn');
-
-function addMenuListener() {
-    $toggle.click(() => {
-        $body.toggleClass('noscroll');
-    });
+function toggleScroll() {
+    $body.toggleClass('noscroll');
 }
-addMenuListener();
 
 function closeMenuOnBodyClick() {
     $overlay.click(() => {
@@ -31,7 +27,7 @@ function closeMenuOnBodyClick() {
         e.stopPropagation();
     });
     
-    $(openBtn).click(e => {
+    $('.menu-toggle').click(e => {
         e.stopPropagation();
     });
 }
