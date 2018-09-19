@@ -6,10 +6,19 @@
     <description>Recent content on izdwuut&#39;s personal place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Sep 2018 09:05:26 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 18 Sep 2018 12:32:17 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bugs and features</title>
+      <link>/bugs/</link>
+      <pubDate>Tue, 18 Sep 2018 12:32:17 +0200</pubDate>
+      
+      <guid>/bugs/</guid>
+      <description>I enjoy improving applications. I do my best to report issues and propose improvements as soon as I notice them. Sometimes I find it difficult because there might be no bug tracker or it may be so obscure that I can&amp;rsquo;t help but flee. Because my reports are scattered all over various places, I decided to collect them in here.</description>
+    </item>
     
     <item>
       <title>Reviews</title>
