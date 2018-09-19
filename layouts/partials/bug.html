@@ -1,0 +1,12 @@
+<article class="bug">
+<h3>{{ if isset . "where" }}
+{{ if isset . "project_url" }}<a href="{{ .project_url }}">{{ end }}{{ .where }}{{ if isset . "project_url" }}</a>{{ end }}
+{{ end }}
+<span class="inline-bracket-list record">
+{{ if or (isset . "ticket") (isset . "pr") }}
+({{ if isset . "ticket" }}<a href="{{ .ticket }}">ticket</a>{{ end }}{{ if isset . "pr" }}<a href="{{ .pr }}">pull request</a>{{ end }})
+{{ end }}
+</span>
+</h3>
+{{ if isset . "desc" }}{{ .desc }}{{ end }}
+</article>

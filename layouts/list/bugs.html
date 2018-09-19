@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+<article class="post post-view">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+  <div class="post-content">{{ .Content }}</div>
+  <h2>Bugs</h2>
+  {{ range .Site.Data.bugs.bugs }}
+      {{ partial "bug.html" . }}
+  {{ end }}
+  
+  <h2>Features (bugs in disguise)</h2>
+  {{ range .Site.Data.bugs.features }}
+      {{ partial "bug.html" . }}
+  {{ end }}
+  {{ partial "comments.html" . }}
+</article>
+
+{{ partial "footer.html" . }}

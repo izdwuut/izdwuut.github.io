@@ -1,0 +1,42 @@
+[[bugs]]
+    "where" = "SVG-Edit"
+    "desc" = "An imported SVG file gets rendered improperly."
+    "ticket" = "https://github.com/SVG-Edit/svgedit/issues/279"
+    "project_url" = "https://github.com/SVG-Edit/svgedit"
+
+[[bugs]]
+    "where" = "Git for Windows installer"
+    "desc" = "You can proceed the install with an editor choosen that it not installed on your system. Despite the PR being merged into master, the issue is not resolved in the latest Git for Windows release, which probably means that I have messed something up. The issue is real, though."
+    "ticket" = "https://github.com/git-for-windows/git/issues/1690"
+    "project_url" = "https://gitforwindows.org/"
+    "pr" = "https://github.com/git-for-windows/build-extra/pull/187"
+
+[[features]]
+    "where" = "PHP OAuth Validator"
+    "desc" = "Add a function that enables you to calculate OAuth signature."
+    "project_url" = "https://github.com/jublonet/oauth-validator-php"
+    "pr" = "https://github.com/jublonet/oauth-validator-php/pull/1"
+
+[[bugs]]
+    "where" = "Android login/register tutorial"
+    "desc" = "The password that gets validated by the API isn't hashed."
+    "project_url" = "https://www.youtube.com/watch?v=0Fnk9ZgsTVw"
+    "pr" = "https://github.com/miskoajkula/MYSQL-PHP-Register-Login/pull/2"
+
+[[bugs]]
+    "where" = "Slayaway Park"
+    "desc" = "Restarting a puzzle removes some crucial environment elements."
+    "project_url" = "http://www.slayawaycamp.com/"
+    "ticket" = "https://steamcommunity.com/app/530390/discussions/0/1483235412201255797/"
+
+[[bugs]]
+    "where" = "Slayaway Park"
+    "desc" = "Entering a puzzle makes it impossible to finish and restart is needed."
+    "project_url" = "http://www.slayawaycamp.com/"
+    "ticket" = "https://steamcommunity.com/app/530390/discussions/0/1483235412209625192/"
+
+[[bugs]]
+    "where" = "Caves of Qud"
+    "desc" = "A slider in game options goes off the screen."
+    "project_url" = "http://www.cavesofqud.com/"
+    "ticket" = "https://steamcommunity.com/app/333640/discussions/1/1697169163404258096/"
