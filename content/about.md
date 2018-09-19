@@ -7,7 +7,7 @@ menu:
     main:
         name: "About me"
 ---
-[I was a gamer once](https://steamcommunity.com/id/izdwuut/recommended). There ought to be a [W3C](https://www.w3.org/)-standardized way to open several links in one click so I wouldn't have to explicitily say that it was a cliché Skyrim reference. Every single night I silently weep because I find no real interest in video games as of lately. Actually that's mostly because I feel deep solitude caused by a gargantuic hole in my heart which is unlikely to get fixed in the foreseeable future. But yeah, I miss games.
+[I was a gamer once](/reviews/). There ought to be a [W3C](https://www.w3.org/)-standardized way to open several links in one click so I wouldn't have to explicitily say that it was a cliché Skyrim reference. Every single night I silently weep because I find no real interest in video games as of lately. Actually that's mostly because I feel deep solitude caused by a gargantuic hole in my heart which is unlikely to get fixed in the foreseeable future. But yeah, I miss games.
 
 Phew. Not so big of a burden when you decide to finally throw it out. Katharsis of sorts.
 
