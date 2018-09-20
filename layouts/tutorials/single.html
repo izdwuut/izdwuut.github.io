@@ -1,0 +1,45 @@
+{{ partial "header.html" . }}
+
+<article class="post post-view">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    <p class="post-meta">
+    {{ partial "meta.html" . }}
+    </p>
+  </header>
+  <div class="tutorial-meta">
+      <div class="topics">
+          <h3>Topics covered</h3>
+          <ul>
+              {{ range .Params.topics }}
+          <li>{{ . }}</li>
+              {{ end }}
+          </ul>
+        </div>
+        <div class="pre-req">
+            <h3>Used libraries</h3>
+            <ul>
+                {{ range .Params.topics }}
+            <li>{{ . }}</li>
+                {{ end }}
+            </ul>
+            
+          </div>
+          <footer class="requirements"><i class="fas fa-download"></i> <a href="{{ .Params.requirements }}">Download requirements.txt.</a></footer>
+  </div>
+  <div class="post-content">
+  {{ .Content }}
+  </div>
+  <footer class="post-footer">
+    {{ if .Params.tags }}
+    <ul class="post-tags">
+      {{ range .Params.tags }}
+      <li><a href="{{$.Site.BaseURL}}tags/{{ . | urlize }}/">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </footer>
+  {{ partial "comments.html" . }}
+</article>
+
+{{ partial "footer.html" . }}

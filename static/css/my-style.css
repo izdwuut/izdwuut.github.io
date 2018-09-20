@@ -179,25 +179,82 @@ footer a {
 
 /* Bugs */
 .bug h3 {
-  margin-bottom: 10px;
-  
+  margin-bottom: 5px;
+  margin-top: 0;
 }
 
-.bug ul {
+.tutorial-meta h3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.tutorial-meta ul {
   padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.tutorial-meta li {
+  margin-bottom: 10px;
+}
+
+.bug, .topics, .pre-req, .requirements {
+  margin: 30px 0;
+  border-left: 4px solid rgb(51, 51, 51);
+  padding: 15px 25px 15px 25px;
+  background-color: #f8f7f7;
+} 
+
+.pre-req {
+  margin-bottom: 0;
+}
+
+.requirements {
+  margin-top: 0;
+  background-color: #ebebeb;
+  padding-left: 40px;
+}
+
+.requirements i {
+  margin-right: 15px;
+}
+
+.requirements a {
+  text-decoration: none;
 }
 
 .bug {
-  margin: 30px 0;
-  border-left: 4px solid rgb(51, 51, 51);
-  padding: 10px 0px 10px 25px;
-} 
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.topics, .pre-req {
+  padding-left: 40px;
+}
+
+.post-content {
+  clear: both;
+}
+
+.tutorial-meta ul {
+  padding-left: 20px;
+}
+
+.tutorial-meta {
+  padding-top: 30px;
+}
+
+.tutorial-meta + .post-content {
+  padding-top: 15px;
+}
 
 .record {
   font-weight: 400;
   font-size: 20px;
 }
 
+
+/* Funny bits */
 .funny-bits {
   text-align: center;
   padding-bottom: 25px;
