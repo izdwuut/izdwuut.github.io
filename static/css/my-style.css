@@ -174,7 +174,6 @@ footer a {
 
 .post h2 {
   margin-bottom: 15px;
-  margin-top: 40px;
 }
 
 /* Bugs */
@@ -182,6 +181,7 @@ footer a {
   margin-bottom: 5px;
   margin-top: 0;
 }
+
 
 .tutorial-meta h3 {
   margin-top: 15px;
@@ -204,6 +204,8 @@ footer a {
   padding: 15px 25px 15px 25px;
   background-color: #f8f7f7;
 } 
+
+
 
 .pre-req {
   margin-bottom: 0;
@@ -230,6 +232,10 @@ footer a {
 
 .topics, .pre-req {
   padding-left: 40px;
+}
+
+.topics {
+  margin-top: 0;
 }
 
 .post-content {
