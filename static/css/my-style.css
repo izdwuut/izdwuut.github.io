@@ -223,6 +223,7 @@ footer a {
 
 .requirements a {
   text-decoration: none;
+  font-style: italic;
 }
 
 .bug {
