@@ -46,7 +46,7 @@ In terms of the API client that we use, [`videos`](https://developers.google.com
 
 We are also going to need an API key - our license to use the interface. [Here](https://developers.google.com/youtube/v3/getting-started#before-you-start) are detailed instruction on how to obtain it. You will be prompted for your project name and in case you were looking for a catchy name, _big-potential-216709_ should work just well.
 
-## REPL {{% icon color="red" icon="❤" %}}
+## REPL {{% icon color="red" icon="heart" %}}
 Seriously, I think that it's one of the best things about Python. It allows you to test all your crazy ideas in a sandbox manner. I love to have it open while I work on my code, as it helps me to figure out empirically how a certain method behaves. It also simplifies comming up with an algorithm, as it allows you to examine a code snippet in isolation. The fact that it evaluates your expressions as you enter them (that's what [REPL](https://en.wikipedia.org/wiki/Read–eval–print_loop) stands for) means responsiveness and it makes the whole experience really fluid and enjoyable, as far as my opinion goes.
 
 You can [invoke it](https://docs.python.org/3/tutorial/interpreter.html#interactive-mode) by simply typing the following command in your favourite shell:

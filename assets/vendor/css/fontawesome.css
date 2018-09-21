@@ -185,14 +185,6 @@
  .fa-inverse {
    color: #fff; }
  
- /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
- readers do not read off random characters that represent icons */
- .fa-heart:before {
-   content: "\f004"; }
-   
- .fa-download:before {
-   content: "\f019"; }
- 
  .sr-only {
    border: 0;
    clip: rect(0, 0, 0, 0);
@@ -241,3 +233,13 @@
    font-family: 'Font Awesome 5 Free';
    font-weight: 900; }
  
+   /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+ readers do not read off random characters that represent icons */
+ .fa-heart:before {
+   content: "\f004"; }
+   
+ .fa-download:before {
+   content: "\f019"; }
+
+   .fa-air-freshener:before {
+    content: "\f5d0"; }

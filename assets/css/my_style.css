@@ -116,11 +116,6 @@ body {
   left: 0;
 }
 
-.heart::before {
-  content: "❤";
-  color: red
-}
-
 a {
   text-decoration-color: darkgray;
 }
