@@ -1,7 +1,8 @@
-{{ $googleFonts := resources.Get "vendor/css/google-fonts.css" }}
+{{ $fonts := resources.Get "vendor/css/fonts.css" }}
 {{ $highlightTheme := resources.Get "vendor/css/highlight.js_9.12.0_styles_atom-one-dark.min.css" }}
 {{ $style := resources.Get "css/style.css" }}
 {{ $myStyle := resources.Get "css/my_style.css" }}
-{{ $fontAwesome := resources.Get "vendor/css/fontawesome-all.css" }}
-{{ $css := slice $googleFonts $highlightTheme $fontAwesome $style $myStyle | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
+{{ $fontAwesome := resources.Get "vendor/css/fontawesome.css" }}
+{{ $css := slice $fonts $highlightTheme $style $myStyle $fontAwesome  | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
+
