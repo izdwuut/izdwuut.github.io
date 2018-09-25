@@ -296,6 +296,12 @@ Woah! Our first function! Now _that's_ a reuputable tutorial! Now that we have i
 
 ## Finally downloading the image.
 
+I'm going to use `requests` library in order to achieve it. Because it's an external module, you have to install it first:
+
+```
+pip install requests
+```
+
 ## Putting it all together.
 
 I think that would be nice if we saved our progress in a script file. We are going to need it later on, but it would also prevent us from losing our precious progress. Here's everything that we've got so far:
