@@ -1,5 +1,6 @@
 ---
 title: "This is what you waited for. Create your own Youtube Thumbnail Downloader in Python!"
+date: 2018-09-25T06:26:33+02:00
 draft: true
 topics:
     - "HTTP requests"
@@ -14,6 +15,7 @@ libraries:
     - "argparse"
     - "google-api-python-client"
     - "configparser"
+    - "requests"
 requirements: "http://"
 github: "https://github.com/izdwuut/utumler"
 preReq:
@@ -42,8 +44,6 @@ To interact with aforementioned API we are going to use a [Google API](https://d
 pip install google-api-python-client
 ```
 
-In terms of the API client that we use, [`videos`](https://developers.google.com/youtube/v3/docs/videos) is the collection that we will be working with. [Here](https://developers.google.com/youtube/v3/docs/videos#resource) you can see full specification of it's structure, albeit we are only interested in a [`['snippet']['thumbnails']`](https://developers.google.com/youtube/v3/docs/thumbnails) key. The docs [states](https://developers.google.com/youtube/v3/docs/#Videos) that the collection provides a [`list`](https://developers.google.com/youtube/v3/docs/videos/list) method. We are going to use it, as there is no method that refers to a single video. Instead we will end up with a list that consists of only one element, which is barely a difference.
-
 We are also going to need an API key - our license to use the interface. [Here](https://developers.google.com/youtube/v3/getting-started#before-you-start) are detailed instruction on how to obtain it. You will be prompted for your project name and in case you were looking for a catchy name, _big-potential-216709_ should work just well.
 
 ## REPL {{% icon color="red" icon="heart" %}}
@@ -66,17 +66,282 @@ Et voilà! In a moment you will see how deep the rabbit hole goes but for now wh
 2. An expression to evaluate. Because we reference a variable name, it would get substituted to `5` - the value that we previously assigned to it.
 3. Evaluated expression.
 
-I deeply and profoundly love this workflow. I hope that it would charm you, too! When it comes to our little utility, we could use the REPL to get acustomed with our wrapper. Let's try it out, shall we? As documented on [the docs page](https://developers.google.com/api-client-library/python/start/get_started#build-the-service-object), we have to import the library first and then use it's `build` method to obtain a service object **(our wrapper)**. It takes a couple of parameters which values can be found [here](https://developers.google.com/api-client-library/python/apis/#YouTube_Data_API), and the API key that we have already received. The following snipped does just that:
+I deeply and profoundly love this workflow. I hope that it would charm you, too! We are going to get familiar with it's real power shortly.
+
+## Interacting with the API
+When it comes to our little utility, we could use the REPL to get acustomed with our wrapper. Let's try it out, shall we? As documented on [the docs page](https://developers.google.com/api-client-library/python/start/get_started#build-the-service-object), we have to import the library first and then use it's `build` method to obtain a service object **(our wrapper)**. It takes a couple of parameters which values can be found [here](https://developers.google.com/api-client-library/python/apis/#YouTube_Data_API), and the API key that we have already received. A caveat: I had to reference the wrapper as `googleapiclient` instead of `apiclient` in order for it to click:
 
 ```
+from googleapiclient.discovery import build
+
 params = {'developerKey': 'YOUR_API_KEY', 'serviceName': 'youtube', 'version': 'v3'}
 service = build(**params)
 ```
-1. Specify method parameters.
-2. Build the wrapper object using the [unpacked](https://docs.python.org/3.7/tutorial/controlflow.html#unpacking-argument-lists) `params` dictionary defined before. It equals to the code below:
+1. Import the method from the library (note the modified module name) that returns the wrapper object.
+2. Specify method parameters.
+4. Build the wrapper object using the [unpacked](https://docs.python.org/3.7/tutorial/controlflow.html#unpacking-argument-lists) `params` dictionary defined before. It equals to the code below:
 ```
 service = build(developerKey='YOUR_API_KEY', serviceName='youtube', version='v3')
 ```
 I know, right? Given [keyword arguments](https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments) order is not important, it makes for some flexible function calls. It rocks... until you have to [mock](https://docs.python.org/3/library/unittest.mock.html) it. Or maybe it's just me?
 
-Great success! You have just builded your wrapper object!
+Great success! You have just builded your wrapper object! Now that we have it, we can use it to obtain thumbnail links. In terms of the API client that we use, [`videos`](https://developers.google.com/youtube/v3/docs/videos) is the [collection](https://developers.google.com/api-client-library/python/start/get_started#collections) that we will be working with. [Here](https://developers.google.com/youtube/v3/docs/videos#resource) you can see full specification of it's structure, albeit we are only interested in a [`['snippet']['thumbnails']`](https://developers.google.com/youtube/v3/docs/thumbnails) key. It can be obtained through [`list`](https://developers.google.com/youtube/v3/docs/videos/list) method. Roughly it would translate to the following Python code:
+
+```
+request = service.videos().list()
+```
+Executing the code would raise an exception that we didn't provide enough parameters to the `list` method. We are going to handle it in a moment. [An example](https://developers.google.com/youtube/v3/getting-started#partial-examples) provided in - lo and behold - the docs gave me an idea what parameters should I pass in order to obtain metadata that interest me. It speaks of the following URL:
+
+```
+https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=YOUR_API_KEY&fields=items(id,snippet(channelId,title,categoryId),statistics)&part=snippet,statistics
+```
+Phew. Let's break it down a bit and look at it from the Python perspective. Our [query](https://en.wikipedia.org/wiki/URL) consist of a couple of variables:
+
+```
+id = '7lCDEYXw3mM'
+key = 'YOUR_API_KEY'
+part = 'snippet,statistics'
+fields = 'items(id,snippet(channelId,title,categoryId),statistics)'
+```
+1. Youtube Video ID.
+2. Your API key.
+3. Here we specify first level keys which fields interest us. We can further pinpoint them using _fields_ variable.
+4. Metdata about video(s) that you are wishing to obtain. They are maped directly to [the response](https://developers.google.com/youtube/v3/docs/videos#resource-representation) fields that you are going to get.
+
+You can easily compare the output with [the video](https://www.youtube.com/watch?v=7lCDEYXw3mM) utilized by the example. More so, it's perfectly possible to visit this link using your browser. You would see the following [JSON](http://www.json.org/) response:
+```
+{
+ "videos": [
+  {
+   "id": "7lCDEYXw3mM",
+   "snippet": {
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "Google I/O 101: Q&A On Using Google APIs",
+    "categoryId": "28"
+   },
+   "statistics": {
+    "viewCount": "3057",
+    "likeCount": "25",
+    "dislikeCount": "0",
+    "favoriteCount": "17",
+    "commentCount": "12"
+   }
+  }
+ ]
+}
+```
+
+Quite obviously the response is not what we were wishing to get, although I think that it gives a rough idea how the API works and how would we use it to get the data we want. Please, look at our [resource representation](https://developers.google.com/youtube/v3/docs/videos#resource-representation) once again. We are interested in a `snippet` part because that's where we can find `thumbnails` field. Knowing how the previous query relates to the response returned by the API, we should be able to get our thumbnails through passing the following query parameters:
+
+```
+id = 'U-iEK0mlmuQ'
+key = 'YOUR_API_KEY'
+part = 'snippet'
+fields = 'items(snippet(thumbnails))'
+```
+
+Let's return to our benelovent REPL and see if we are right. The parameters above directly translates to Python code and they could be directly pasted into our interactive console, albeit I'm going to pack them into a dictionary like I did when I had builded the wrapper object:
+
+```
+request_params = {'id': 'U-iEK0mlmuQ',
+                  'part': 'snippet',
+                  'fields': 'items(snippet(thumbnails))'}
+request = service.videos().list(**request_params)
+```
+
+The last step is to actually execute our query. In order to do that, we are [asked](https://developers.google.com/api-client-library/python/start/get_started#execution-and-response) to use the `execute` method:
+
+```
+response = request.execute()
+```
+
+As I wrote in the previous section, we can access the variable value by simply entering it's name into REPL:
+
+```
+>>> response
+{'items': [{'snippet': {'thumbnails': {'default': {'url': 'https://i.ytimg.com/vi/U-iEK0mlmuQ/default.jpg', 'width': 120, 'height': 90}, 'medium': {'url': 'https://i.ytimg.com/vi/U-iEK0mlmuQ/mqdefault.jpg', 'width': 320, 'height': 180}, 'high': {'url': 'https://i.ytimg.com/vi/U-iEK0mlmuQ/hqdefault.jpg', 'width': 480, 'height': 360}, 'standard': {'url': 'https://i.ytimg.com/vi/U-iEK0mlmuQ/sddefault.jpg', 'width': 640, 'height': 480}, 'maxres': {'url': 'https://i.ytimg.com/vi/U-iEK0mlmuQ/maxresdefault.jpg', 'width': 1280, 'height': 720}}}}]}
+```
+
+Uh oh. Not the most decipherable output, isn't it? Worry not! We can use lovely [`json`](https://docs.python.org/3/library/json.html) library to make it more human-readable. Try the following snippet of code:
+
+```
+>>> import json
+>>> formatted_response = json.dumps(response, indent=2)
+>>> print(formatted_response)
+{
+  "items": [
+    {
+      "snippet": {
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    }
+  ]
+}
+```
+1. Import `json` library that we will use to receive pretty, formatted output. It's a part of vast [Python standard library](https://docs.python.org/3/library/), which I find cool on it's own.
+2. Create output string. The _indent_ parameter tells us that each level will be indented using 2 spaces.
+3. Print our response on the console.
+4. Formatted output.
+
+Much better! In order to make navigating over thumbnails entries a little more convenient, I'm going to assign appropriate key under corresponding variable:
+
+```
+>>> thumbs = response['items'][0]['snippet']['thumbnails']
+>>> formatted_thumbs = json.dumps(thumbs, indent=2)
+>>> print(formatted_thumbs)
+{
+  "default": {
+    "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/default.jpg",
+    "width": 120,
+    "height": 90
+  },
+  "medium": {
+    "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/mqdefault.jpg",
+    "width": 320,
+    "height": 180
+  },
+  "high": {
+    "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/hqdefault.jpg",
+    "width": 480,
+    "height": 360
+  },
+  "standard": {
+    "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/sddefault.jpg",
+    "width": 640,
+    "height": 480
+  },
+  "maxres": {
+    "url": "https://i.ytimg.com/vi/U-iEK0mlmuQ/maxresdefault.jpg",
+    "width": 1280,
+    "height": 720
+  }
+}
+```
+1. I think that navigating over lists and dictionaries in Python is pretty straighforward, although I'm going to explain it a bit for the sake of clarity. The value under `items` key is a list (think of it as of an array - they behave the same in this example) which is denoted by `[` and `]` characters. It has only one item and Python list indices start from 0, so by typing `['0']` we will get what we want. The `snippet` resource which we reference using `['snippet']` key contains one more object - `thumbnails`. There are images URLs that we are going to process.
+2. Format dictionary items that we have just extracted using 2 spaces indent.
+3. Display our data structure.
+4. Formatted output.
+
+Before we can download our image, we need a way to determine which one is the biggest. Thumbnails come in different sizes depending on the video. Documentation for the resource [states](https://developers.google.com/youtube/v3/docs/thumbnails) that it can return them in the following dimensions:
+
+* default (120 x 90)
+* medium (320 x 180) 
+* high (480 x 360)
+* standard (640 x 480)
+* maxres (1280 x 720)
+
+As you see we have received them all. Unfortunately we can't just assume that our video comes with all of the above and just download the **maxres** image. Some of them simply don't have it. For example an API request for the iconic [_Charlie bit my finger_](https://www.youtube.com/watch?v=_OBlgSz8sSM) yields only these:
+
+* default (120 x 90)
+* medium (320 x 180) 
+* high (480 x 360)
+
+* ~~standard (640 x 480)~~
+* ~~maxres (1280 x 720)~~
+
+Because the sizes returned by the API can vary I decided to find a way to make sure which one is the biggest. The simpliest approach that I can think of is to create an ordered list of sizes and check if the response has returned any of them. I think that I'm okay to assume that I can rely on the default item order, although my inner paranoid yells at me to manually check which image is the biggest based on their dimensions in pixels. He would certainly benefit from an obesity diet, so I'm just going to leave him to starve:
+
+```
+SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
+
+
+def get_largest_thumb_url(thumbs):
+    for size in SIZES:
+        if size in thumbs:
+            thumb = thumbs[size]
+            url = thumb['url']
+            return url
+    return None
+
+
+thumb_url = get_largest_thumb_url(thumbs)
+```
+1. Define [constant](https://www.python.org/dev/peps/pep-0008/?#constants) denoting images size order. They correspond with dictionary keys of previously defined `thumbs` variable.
+4. A function that returns an URL of the largest thumbnail based on dictionary passed as it's parameter. Returns `None` if it contains no key specified above. I don't think that it may happen, but it's considered to be in good style, isn't it?
+5. Iterate over `SIZES` keys to find out if `thumbs` dictionary contain any of them.
+6. Check if a currently processed `size` key is present in `thumbs` dictionary.
+7. Because a key was found, get a value from `thumbs` dict that matches it and assign it to a temporary `thumb` variable.
+8. Get the `thumb`nail URL.
+8. Return the `thumb`nail `url`.
+9. Return `None` if `thumbs` contain no `size` key listed in the `SIZES`.
+12. Assign the largest thumb to a `thumb` variable.
+
+Woah! Our first function! Now _that's_ a reuputable tutorial! Now that we have it, we can finally download our image. 
+
+## Finally downloading the image.
+
+## Putting it all together.
+
+I think that would be nice if we saved our progress in a script file. We are going to need it later on, but it would also prevent us from losing our precious progress. Here's everything that we've got so far:
+
+
+
+
+## Refactor it with fire.
+
+I love refactoring. As of lately I try to write a proof-of-concept first and worry about deploying it in methods and classes later on. 
+
+```
+from googleapiclient.discovery import build
+import json
+
+SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
+
+
+def get_api(api_key):
+  wrapper_params = {'developerKey': api_key,
+                    'serviceName': 'youtube',
+                    'version': 'v3'}
+  api = build(**wrapper_params)
+  return api
+
+
+def get_thumbs(api):
+  request_params = {'id': 'U-iEK0mlmuQ',
+                    'part': 'snippet',
+                    'fields': 'items(snippet(thumbnails))'}
+  request = api.videos().list(**request_params)
+  response = request.execute()
+  thumbs = response['items'][0]['snippet']['thumbnails']
+  return thumbs
+
+
+def get_largest_thumb_url(thumbs):
+  for size in SIZES:
+    if size in thumbs:
+      thumb = thumbs[size]
+      url = thumb['url']
+      return url
+  return None
+
+
+thumb_url = get_largest_thumb_url(thumbs)
+```
+
+As you can see, I have slightly modified it so more readable and organised. At least I hope that it is. I decided to put our `SIZES` list at the top of the file. I think that this way it would be easy to find if there's a need to alter it. There's no constants or config file as of yet, so I hope that's a nice middle ground. I have also moved getting the wrapper and performing the query to corresponding functions. I'm going to create a class later on to wrap codebase, but I think that we are good for now.
