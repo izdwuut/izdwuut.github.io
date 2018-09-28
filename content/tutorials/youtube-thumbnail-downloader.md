@@ -62,7 +62,8 @@ Et voilà! In a moment you will see how deep the rabbit hole goes but for now wh
 >>> var
 5
 {{< / highlight >}}
-1. Assigning a variable. I'm the guy who document getters and setters in his code, by the way.
+
+1. Assigning a variable. I'm the guy who documents getters and setters in his code, by the way.
 2. An expression to evaluate. Because we reference a variable name, it would get substituted to `5` - the value that we previously assigned to it.
 3. Evaluated expression.
 
@@ -254,7 +255,7 @@ Much better! In order to make navigating over thumbnails entries a little more c
 }
 ```
 
-1. I think that navigating over lists and dictionaries in Python is pretty straighforward, although I'm going to explain it a bit for the sake of clarity. The value under `items` key is a list (think of it as of an array - they behave the same in this example) which is denoted by `[` and `]` characters. It has only one item and Python list indices start from 0, so by typing `['0']` we will get what we want. The `snippet` resource which we reference using `['snippet']` key contains one more object - `thumbnails`. There are images URLs that we are going to process.
+1. I think that navigating over lists and dictionaries in Python is pretty straighforward, although I'm going to explain it a bit for the sake of clarity. The value under `items` key is a list (think of it as of an array - they behave the same in this example) which is denoted by `[` and `]` characters. It has only one item and Python list indices start from 0, so by typing `['0']` we will get what we want. The `snippet` resource which we reference using a `['snippet']` key contains one more object - `thumbnails`. There are images URLs that we are going to process.
 2. Format dictionary items that we have just extracted using 2 spaces indent.
 3. Display our data structure.
 4. Formatted output.
@@ -371,7 +372,7 @@ Just by looking at it I can't help but think that we need to immediately...
 
 ## Refactor it with fire.
 
-I love refactoring. As of lately I try to write a rough draft first and worry about deploying it in methods and classes later on. I find it less streneous that diving right into [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) and whatnot.
+I love refactoring. As of lately I tend to write a rough draft first and worry about deploying it in methods and classes later on. I find it less streneous that diving right into [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) and whatnot.
 
 First of all I think that it would be nice if we removed test outputs and a reference to the `json` library as they will be no longer needed.
 
