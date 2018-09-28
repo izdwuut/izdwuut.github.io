@@ -294,3 +294,15 @@ footer a {
 .post-content table code {
   white-space: pre;
 }
+
+/* Unflavored code fences */
+code {
+  padding: 20px;
+  
+}
+
+pre {
+  border-radius: 6px;
+  background-color: #272822;
+  color: white;
+}
