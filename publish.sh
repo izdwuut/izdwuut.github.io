@@ -17,14 +17,14 @@ mkdir $dir
 git worktree prune
 rm -rf .git/worktrees/$dir/
 
-echo "Checking out gh-pages branch into public"
+echo "Checking out publish branch into public"
 git worktree add -B $branch $dir $remote/$branch
 
-# echo "Removing existing files"
-# rm -rf $dir/*
+echo "Removing existing files"
+rm -rf $dir/*
 
 echo "Generating site."
-hugo -t $theme
+hugo -t $theme --minify
 
 echo "Updating gh-pages branch"
 if [ $# -eq 0 ]; then
