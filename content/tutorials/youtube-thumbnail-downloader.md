@@ -9,17 +9,19 @@ topics:
     - "CLI"
     - "REPL"
     - "Config files"
+    - "Refactoring"
 libraries:
-    - "PIL"
-    - "io"
     - "argparse"
     - "google-api-python-client"
     - "configparser"
-    - "requests"
+    - "urllib"
+    - "json"
 requirements: "http://"
 github: "https://github.com/izdwuut/utumler"
 preReq:
     - "Python interpreter"
+    - "Text editor"
+    - "CLI"
 layout: "tutorial"
 tags: 
     - "Python"
@@ -293,7 +295,7 @@ Because the sizes returned by the API can vary I decided to find a way to make s
 {{< / highlight >}}
 
 1. Define [constant](https://www.python.org/dev/peps/pep-0008/?#constants) denoting images size order. They correspond with dictionary keys of previously defined `thumbs` variable.
-4. A function that returns an URL of the largest thumbnail based on dictionary passed as it's parameter. Returns `None` if it contains no key specified above. I don't think that it may happen, but it's considered to be in good style, isn't it?
+4. A function that returns an URL of the largest thumbnail based on a dictionary passed as it's parameter. Returns `None` if it contains no key specified above. I don't think that it may happen, but it's considered to be in good style, isn't it?
 5. Iterate over `SIZES` keys to find out if `thumbs` dictionary contain any of them.
 6. Check if a currently processed `size` key is present in `thumbs` dictionary.
 7. Because a key was found, get a value from `thumbs` dict that matches it and assign it to a temporary `thumb` variable.
@@ -337,7 +339,7 @@ from urllib.request import urlretrieve
 import json
 
 
-api_params = {'developerKey': 'AIzaSyDKkOsGSlIjlokCd1eDtlCLDEVGXz-Tg10',
+api_params = {'developerKey': 'YOUR_API_KEY',
               'serviceName': 'youtube',
               'version': 'v3'}
 api = build(**api_params)
@@ -372,9 +374,169 @@ Just by looking at it I can't help but think that we need to immediately...
 
 ## Refactor it with fire.
 
-I love refactoring. As of lately I tend to write a rough draft first and worry about deploying it in methods and classes later on. I find it less streneous that diving right into [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) and whatnot.
+I love refactoring. As of lately I tend to write a rough draft first and worry about deploying it in methods and classes later on. I find it less streneous than diving right into [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) and whatnot.
 
 First of all I think that it would be nice if we removed test outputs and a reference to the `json` library as they will be no longer needed.
+
+{{< highlight python "linenos=table,hl_lines=3 18" >}}
+from googleapiclient.discovery import build
+from urllib.request import urlretrieve
+import json
+{{< / highlight >}}
+
+{{< highlight python "linenos=table,linenostart=16,hl_lines=2 3" >}}
+thumbs = response['items'][0]['snippet']['thumbnails']
+formatted_thumbs = json.dumps(thumbs, indent=2)
+print(formatted_thumbs)
+{{< / highlight >}}
+
+I think that it would be cool if we put getting the wrapper and obtaining thumbnails from the server into functions. Let's start with obtaining the API object first. This is the code that bothers me:
+
+{{< highlight python "linenos=table,linenostart=6" >}}
+api_params = {'developerKey': 'YOUR_API_KEY',
+              'serviceName': 'youtube',
+              'version': 'v3'}
+api = build(**api_params)
+{{< / highlight >}}
+
+It depends on one parameter - your API key (assigned to a `developerKey` named parameter). Let's create a function that takes just that and returns a builded wrapper:
+
+{{< highlight python "linenos=table" >}}
+API_KEY = 'YOUR_API_KEY'
+
+
+def get_api(api_key):
+    api_params = {'developerKey': api_key,
+                  'serviceName': 'youtube',
+                  'version': 'v3'}
+    api = build(**api_params)
+    return api
+
+
+api = get_api(API_KEY)
+{{< / highlight >}}
+
+1. Our API key. I decided to make it a constant, as I think that it's unlikely that it's going to change.
+4. Define a function that takes the API key as it's only positional parameter.
+5. Define wrapper parameters. Here we use our API key passed as a function argument, so it's no longer hard-coded.
+8. Build our wrapper using parameters specified before.
+9. Return the wrapper.
+12. Get the wrapper and assign it to `api` variable.
+
+Neat! Now let's take care of receiving the thumbs. This is our little code:
+
+```python
+request_params = {'id': 'U-iEK0mlmuQ',
+                  'part': 'snippet',
+                  'fields': 'items(snippet(thumbnails))'}
+request = api.videos().list(**request_params)
+response = request.execute()
+thumbs = response['items'][0]['snippet']['thumbnails']
+```
+
+It would be nice if we passed a video ID as a function argument. We will also need the wrapper object as it is required to execute our request. The refactored function would look like this:
+
+{{< highlight python "linenos=table" >}}
+video_id = 'U-iEK0mlmuQ'
+
+
+def get_thumbs(api, video_id):
+    request_params = {'id': video_id,
+                      'part': 'snippet',
+                      'fields': 'items(snippet(thumbnails))'}
+    request = api.videos().list(**request_params)
+    response = request.execute()
+    thumbs = response['items'][0]['snippet']['thumbnails']
+    return thumbs
+
+
+thumbs = get_thumbs(api, video_id)
+{{< / highlight >}}
+
+4. Define a function that returns thumbnails for a video given it's ID and using provided API wrapper.
+5. Define API endpoint parameters as described in [this](Interacting with the API) section. We are going to use a video ID provided as a function argument.
+8. Prepare a request that would get our thumbnails list.
+9. Execute the query.
+10. Extract thumbnails metadata from the response from the server.
+11. Return extracted thumbnails metadata.
+14. Get extracted thumbnails metadata and assign it to `thumbs` variable.
+
+I think that our code already looks pretty nice. There is one more piece of code that I think is worth refactoring.
+
+```python
+thumb_url = get_largest_thumb_url(thumbs)
+
+filename = 'wallpaper.jpg'
+urlretrieve(thumb_url, filename)
+```
+
+Let's put it in a function:
+
+{{< highlight python "linenos=table" >}}
+thumb_url = get_largest_thumb_url(thumbs)
+filename = 'wallpaper.jpg'
+
+
+def download_thumb(thumb_url, filename):
+    urlretrieve(thumb_url, filename)
+
+    
+download_thumb(thumb_url, filename)
+{{< / highlight >}}
+
+
+
+
+Becase we no longer directly depend on the `urlretrieve` function from `urllib` library, we are free to change it in the future.
+This is what we have so far:
+
+{{< highlight python "linenos=table,hl_lines=" >}}
+from googleapiclient.discovery import build
+from urllib.request import urlretrieve
+
+API_KEY = 'YOUR_API_KEY'
+
+
+def get_api(api_key):
+    api_params = {'developerKey': api_key,
+                  'serviceName': 'youtube',
+                  'version': 'v3'}
+    api = build(**api_params)
+    return api
+
+
+api = get_api(API_KEY)
+
+video_id = 'U-iEK0mlmuQ'
+
+
+def get_thumbs(api, video_id):
+    request_params = {'id': video_id,
+                      'part': 'snippet',
+                      'fields': 'items(snippet(thumbnails))'}
+    request = api.videos().list(**request_params)
+    response = request.execute()
+    thumbs = response['items'][0]['snippet']['thumbnails']
+    return thumbs
+
+thumbs = get_thumbs(api, video_id)
+
+SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
+
+
+def get_largest_thumb_url(thumbs):
+    for size in SIZES:
+        if size in thumbs:
+            thumb_url = thumbs[size]['url']
+            return thumb_url
+    return None
+
+
+thumb_url = get_largest_thumb_url(thumbs)
+
+filename = 'wallpaper.jpg'
+urlretrieve(thumb_url, filename)
+{{< / highlight >}}
 
 ```python
 from googleapiclient.discovery import build
