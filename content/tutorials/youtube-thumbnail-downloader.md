@@ -31,27 +31,27 @@ tags:
     - "REPL"
     - "Tutorial"
 ---
-The idea is pretty simple. Given the URL to a Youtube video, the script spews out it's thumbnail. [See this lovely image?](https://www.youtube.com/watch?v=U-iEK0mlmuQ) It would make for a perfect wallpaper and I wrote the script that does just that.
+The idea is pretty simple. Given the URL to a Youtube video, the script spews out it's thumbnail. [See this lovely image?](https://www.youtube.com/watch?v=U-iEK0mlmuQ) It would make for a perfect wallpaper and I wrote a script that does just that.
 
-How would Python render it possible, you'd ask? By working hand-in-hand with [Youtube API](https://developers.google.com/youtube/v3/), of course! I should seriously reconsider becoming a clown. I have a hunch that it would come as natural to me. Let's face it - my nose naturally turns red when it's cold and my feet are enormously large. Which in turn implies...
+How would Python render it possible, you'd ask? By working hand-in-hand with [Youtube API](https://developers.google.com/youtube/v3/), of course! I should seriously reconsider becoming a clown. I have a hunch that it would come as natural to me. Let's face it - my nose naturally turns red when it's cold and my feet are enormously large. Which implies...
 
 ## Is it by chance an apple pie?
 ...that they would fit those funky clown shoes just perfectly. Oh, the pie. _Right_.
 
-API stands for _Application Programming Interface_. Be prepared for more mumbo-jumbo gibberish down the road. When I use the term, I mean a subset of a service's funcionality that your script can make use of. The use case covered by this tutorial can be brought to life because Youtube API **(the service)** provides an endpoint to download the thumbnail given the video ID. Programmatically speaking it's nothing more than a function. It yields some output **(the thumbnail resource)** given some parameters **(the Youtube video ID)** or lack thereof. 
+API stands for _Application Programming Interface_. Be prepared for more mumbo-jumbo gibberish down the road. When I use the term, I mean a subset of a service's funcionality that your script can make use of. The use case covered by this tutorial can be brought to life because Youtube API **(the service)** provides an endpoint to download the thumbnail given the video ID. Programmatically speaking it's nothing more than a function. It yields some output **(the thumbnail)** given some parameters **(the Youtube video ID)** or lack thereof. 
 
-To interact with aforementioned API we are going to use a [Google API](https://developers.google.com/api-client-library/python/start/get_started) wrapper - a Python abstraction for the API. It acts like any other library and I believe that it greatly simplifies the task as it doesn't require performing a HTTP call explicitly. It can be conveniently installed from a CLI using pip:
+To interact with aforementioned API we are going to use a [Google API](https://developers.google.com/api-client-library/python/start/get_started) wrapper - a Python abstraction for the API. It acts like any other library and I believe that it greatly simplifies the task as it doesn't require performing a HTTP call explicitly. It can be conveniently installed from a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) using pip - the default Python's package manager:
 
 {{< highlight bash >}}
 pip install google-api-python-client
 {{< / highlight >}}
 
-We are also going to need an API key - our license to use the interface. [Here](https://developers.google.com/youtube/v3/getting-started#before-you-start) are detailed instruction on how to obtain it. You will be prompted for your project name and in case you were looking for a catchy name, _big-potential-216709_ should work just well.
+We are also going to need an API key - our license to use the interface. [Here](https://developers.google.com/youtube/v3/getting-started#before-you-start) are detailed instruction on how to obtain it. You will be prompted for your project name. In case you were looking for a catchy name, you should be fine with _big-potential-216709_.
 
 ## REPL {{% icon color="red" icon="heart" %}}
-Seriously, I think that it's one of the best things about Python. It allows you to test all your crazy ideas in a sandbox manner. I love to have it open while I work on my code, as it helps me to figure out empirically how a certain method behaves. It also simplifies comming up with an algorithm, as it allows you to examine a code snippet in isolation. The fact that it evaluates your expressions as you enter them (that's what [REPL](https://en.wikipedia.org/wiki/Read–eval–print_loop) stands for) means responsiveness and it makes the whole experience really fluid and enjoyable, as far as my opinion goes.
+Seriously, I think that it's one of the best things about Python. It allows you to test all your crazy ideas in sandbox manner. I always have it open while I work on my code, as it helps me to figure out empirically how a certain method behaves. It also simplifies comming up with an algorithm, as it allows you to examine a code snippet in isolation. The fact that it evaluates your expressions as you enter them (that's what [REPL](https://en.wikipedia.org/wiki/Read–eval–print_loop) stands for) means responsiveness and it makes the whole experience enjoyably fluid.
 
-You can [invoke it](https://docs.python.org/3/tutorial/interpreter.html#interactive-mode) by simply typing the following command in your favourite shell:
+You can [invoke it](https://docs.python.org/3/tutorial/interpreter.html#interactive-mode) by typing the following command in your favorite shell:
 
 {{< highlight bash >}}
 python
@@ -60,8 +60,8 @@ python
 Et voilà! In a moment you will see how deep the rabbit hole goes but for now why don't we play with it a little? The following snippet of code would make it memorize a value assigned to a variable:
 
 {{< highlight python "linenos=table" >}}
->>> var = 5
->>> var
+var = 5
+var
 5
 {{< / highlight >}}
 
@@ -69,11 +69,11 @@ Et voilà! In a moment you will see how deep the rabbit hole goes but for now wh
 2. An expression to evaluate. Because we reference a variable name, it would get substituted to `5` - the value that we previously assigned to it.
 3. Evaluated expression.
 
-Multiline snippets of code are also possible - just press `Shift` + `Enter`. Keep in mind that using [identation](https://docs.python.org/3/faq/design.html?highlight=indentation#why-does-python-use-indentation-for-grouping-of-statements) is still a necessity. This little conditional statement should print _5 = 5!_:
+Multiline snippets of code are also possible - just press `Shift` + `Enter`. Keep in mind that [identation](https://docs.python.org/3/faq/design.html?highlight=indentation#why-does-python-use-indentation-for-grouping-of-statements) is still a necessity. This little conditional statement should print _5 = 5!_:
 
 ```python
->>> if var is 5:
-...     print('5 = 5!')
+if var is 5:
+    print('5 = 5!')
 ```
 
 I deeply and profoundly love this workflow. I hope that it would charm you, too! We are going to get familiar with it's real power shortly.
@@ -372,7 +372,7 @@ urlretrieve(thumb_url, filename)
 
 Just by looking at it I can't help but think that we need to immediately...
 
-## Refactor it with fire.
+## Refactor it with fire
 
 I love refactoring. As of lately I tend to write a rough draft first and worry about deploying it in methods and classes later on. I find it less streneous than diving right into [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) and whatnot.
 
@@ -423,6 +423,8 @@ api = get_api(API_KEY)
 9. Return the wrapper.
 12. Get the wrapper and assign it to `api` variable.
 
+
+
 Neat! Now let's take care of receiving the thumbs. This is our little code:
 
 ```python
@@ -461,36 +463,9 @@ thumbs = get_thumbs(api, video_id)
 11. Return extracted thumbnails metadata.
 14. Get extracted thumbnails metadata and assign it to `thumbs` variable.
 
-I think that our code already looks pretty nice. There is one more piece of code that I think is worth refactoring.
+There are still a few steps left. As you might have already seen, the code interlaced with functions definitions doesn't look particularly good. We will eventually put all this in a dedicated class, but I suggest that we start with creating a method that downloads the video thumbnail. This is what we have so far:
 
-```python
-thumb_url = get_largest_thumb_url(thumbs)
-
-filename = 'wallpaper.jpg'
-urlretrieve(thumb_url, filename)
-```
-
-Let's put it in a function:
-
-{{< highlight python "linenos=table" >}}
-thumb_url = get_largest_thumb_url(thumbs)
-filename = 'wallpaper.jpg'
-
-
-def download_thumb(thumb_url, filename):
-    urlretrieve(thumb_url, filename)
-
-    
-download_thumb(thumb_url, filename)
-{{< / highlight >}}
-
-
-
-
-Becase we no longer directly depend on the `urlretrieve` function from `urllib` library, we are free to change it in the future.
-This is what we have so far:
-
-{{< highlight python "linenos=table,hl_lines=" >}}
+{{< highlight python "linenos=table,hl_lines=29 31 42 44-45" >}}
 from googleapiclient.discovery import build
 from urllib.request import urlretrieve
 
@@ -538,45 +513,21 @@ filename = 'wallpaper.jpg'
 urlretrieve(thumb_url, filename)
 {{< / highlight >}}
 
-```python
-from googleapiclient.discovery import build
+As you can see, I have slightly altered the code. I believe that it's more readable and organized now. I decided to put our `SIZES` list at the top of the file. I think that this way it would be easy to find if there's a need to alter it. I have also made the `api_key` variable a constant and put it next to `SIZES` list.
 
-SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
+Using the highlighted lines from the listing above, I have came up with an idea for a function that downloads the thumbnail:
 
+{{< highlight python "linenos=table,hl_lines=" >}}
+def download_thumb(api, video_id, path='wallpaper.jpg'):
+	thumbs = get_thumbs(api, video_id)
+	thumb_url = get_largest_thumb_url(thumbs)
+	urlretrieve(thumb_url, path)
+{{< / highlight >}}
 
-def get_api(api_key):
-    wrapper_params = {'developerKey': api_key,
-                      'serviceName': 'youtube',
-                      'version': 'v3'}
-    api = build(**wrapper_params)
-    return api
-
-
-def get_thumbs(api, video_id):
-    request_params = {'id': video_id,
-                      'part': 'snippet',
-                      'fields': 'items(snippet(thumbnails))'}
-    request = api.videos().list(**request_params)
-    response = request.execute()
-    thumbs = response['items'][0]['snippet']['thumbnails']
-    return thumbs
-
-
-def get_largest_thumb_url(thumbs):
-    for size in SIZES:
-        if size in thumbs:
-            thumb_url = thumbs[size]['url']
-            return thumb_url
-    return None
-
-
-api_key = 'YOUR_API_KEY'
-api = get_api(api_key)
-video_id = 'U-iEK0mlmuQ'
-thumbs = get_thumbs(api, video_id)
-thumb_url = get_largest_thumb_url(thumbs)
-```
-
-As you can see, I have slightly modified it so it's more readable and organised (at least I hope that it is). I decided to put our `SIZES` list at the top of the file. I think that this way it would be easy to find if there's a need to alter it. There's no constants or config file as of yet, so I hope that's a nice middle ground. I have also moved getting the wrapper and performing the query to corresponding functions. I'm going to create a class later on to wrap codebase, but I think that we are good for now.
-
-I have also made `api_key` variable a constant and put it next to `SIZES` list.
+1. There are a couple of parameters here. Let's break them down:
+   * `api` - as the function references other functions that we have defined before, we have to pass an api object, so that they can be properly invoked.
+   * `video_id` - an ID of a video
+   * `path` - a path to a saved file. Previously I have written about passing a value of `filename` variable to a `urlretrieve` built-in function. I have came up to a conclusion that `path` is more appropriate (sadly, _appropriatier_ is not a word), as the file can be saved anywhere on your device. It [defaults](https://docs.python.org/3/reference/compound_stmts.html#function-definitions) to `wallpaper.jpg`, which means that the file under that name would appear in the directory where you have fired the script.
+2. Get thumbnails URLs for a given video referenced by it's ID.
+3. Get the largest thumbnail URL.
+4. Save the image using the path provided as a function parameter.
