@@ -1,2 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>izdwuut&#39;s personal place</title><link>/</link><description>Recent content on izdwuut&#39;s personal place</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 18 Sep 2018 12:32:17 +0200</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Bugs and features</title><link>/bugs/</link><pubDate>Tue, 18 Sep 2018 12:32:17 +0200</pubDate><guid>/bugs/</guid><description>I enjoy improving applications. I do my best to report issues and propose improvements as soon as I notice them. Sometimes I find it difficult because there might be no bug tracker or it may be so obscure that I can&amp;rsquo;t help but flee. Because my reports are scattered all over various places, I decided to collect them in here.</description></item><item><title>Reviews</title><link>/reviews/</link><pubDate>Tue, 18 Sep 2018 09:05:26 +0200</pubDate><guid>/reviews/</guid><description>Video games are cool, aren&amp;rsquo;t they? Once I was under an impression that I&amp;rsquo;m able to finish every single item on my backlog. Suprisingly I&amp;rsquo;m not. But it was great quest nonetheless! I signed for reviewing every title that I will manage to finish. I was mostly publishing my reviews on Steam, thanks to it&amp;rsquo;s built-in feature. For games that I didn&amp;rsquo;t own on that platform, I published them on Metacritic.</description></item><item><title>IS THIS THING RECORD O hi there!</title><link>/posts/hello-world/</link><pubDate>Fri, 14 Sep 2018 13:26:33 +0200</pubDate><guid>/posts/hello-world/</guid><description>Hello world! I&amp;rsquo;m Bartosz. Now that I have your attention, why don&amp;rsquo;t you follow this inconspicuous and harmless link and click OK in every window that appear on your screen? Much obliged.
-This is it! My much awaited blog. Admit it, you was looking forward to check out what nonsensical thoughts I managed to came up with. Wait until you see my prime time commercials. I think (I hope) that it&amp;rsquo;s safe to say that I&amp;rsquo;m going to dedicate this place to some programming-related stuff.</description></item><item><title>Exceedingly entertaining piece of information about my humble and awe-inspiring persona</title><link>/about/</link><pubDate>Tue, 04 Sep 2018 13:11:29 +0200</pubDate><guid>/about/</guid><description>I was a gamer once. There ought to be a W3C-standardized way to open several links in one click so I wouldn&amp;rsquo;t have to explicitily say that it was a cliché Skyrim reference. Every single night I silently weep because I find no real interest in video games as of lately. Actually that&amp;rsquo;s mostly because I feel deep solitude caused by a gargantuic hole in my heart which is unlikely to get fixed in the foreseeable future.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>izdwuut&#39;s personal place</title>
+    <link>/</link>
+    <description>Recent content on izdwuut&#39;s personal place</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Sep 2018 12:32:17 +0200</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bugs and features</title>
+      <link>/bugs/</link>
+      <pubDate>Tue, 18 Sep 2018 12:32:17 +0200</pubDate>
+      
+      <guid>/bugs/</guid>
+      <description>I enjoy improving applications. I do my best to report issues and propose improvements as soon as I notice them. Sometimes I find it difficult because there might be no bug tracker or it may be so obscure that I can&amp;rsquo;t help but flee. Because my reports are scattered all over various places, I decided to collect them in here.</description>
+    </item>
+    
+    <item>
+      <title>Reviews</title>
+      <link>/reviews/</link>
+      <pubDate>Tue, 18 Sep 2018 09:05:26 +0200</pubDate>
+      
+      <guid>/reviews/</guid>
+      <description>Video games are cool, aren&amp;rsquo;t they? Once I was under an impression that I&amp;rsquo;m able to finish every single item on my backlog. Suprisingly I&amp;rsquo;m not. But it was great quest nonetheless! I signed for reviewing every title that I will manage to finish. I was mostly publishing my reviews on Steam, thanks to it&amp;rsquo;s built-in feature. For games that I didn&amp;rsquo;t own on that platform, I published them on Metacritic.</description>
+    </item>
+    
+    <item>
+      <title>IS THIS THING RECORD O hi there!</title>
+      <link>/posts/hello-world/</link>
+      <pubDate>Fri, 14 Sep 2018 13:26:33 +0200</pubDate>
+      
+      <guid>/posts/hello-world/</guid>
+      <description>Hello world! I&amp;rsquo;m Bartosz. Now that I have your attention, why don&amp;rsquo;t you follow this inconspicuous and harmless link and click OK in every window that appear on your screen? Much obliged.
+This is it! My much awaited blog. Admit it, you was looking forward to check out what nonsensical thoughts I managed to came up with. Wait until you see my prime time commercials. I think (I hope) that it&amp;rsquo;s safe to say that I&amp;rsquo;m going to dedicate this place to some programming-related stuff.</description>
+    </item>
+    
+    <item>
+      <title>Exceedingly entertaining piece of information about my humble and awe-inspiring persona</title>
+      <link>/about/</link>
+      <pubDate>Tue, 04 Sep 2018 13:11:29 +0200</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I was a gamer once. There ought to be a W3C-standardized way to open several links in one click so I wouldn&amp;rsquo;t have to explicitily say that it was a cliché Skyrim reference. Every single night I silently weep because I find no real interest in video games as of lately. Actually that&amp;rsquo;s mostly because I feel deep solitude caused by a gargantuic hole in my heart which is unlikely to get fixed in the foreseeable future.</description>
+    </item>
+    
+  </channel>
+</rss>
