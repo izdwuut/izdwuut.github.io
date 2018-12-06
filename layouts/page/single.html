@@ -9,13 +9,7 @@
   </header>
   <div class="post-content">{{ .Content }}</div>
   <footer class="post-footer">
-    {{ if .Params.tags }}
-    <ul class="post-tags">
-      {{ range .Params.tags }}
-      <li><a href="{{$.Site.BaseURL}}tags/{{ . | urlize }}/">{{ . }}</a></li>
-      {{ end }}
-    </ul>
-    {{ end }}
+    {{ partial "tags.html" }}
   </footer>
   <div class="cd">&#x1F4BF;</div>
   {{ partial "comments.html" . }}

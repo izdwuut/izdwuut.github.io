@@ -43,7 +43,6 @@ body {
   background: white;
 }
 
-
 .noscroll .menu-toggle::before {
   transform: translate3d(-50%, -5px, 0);
 }
@@ -51,10 +50,10 @@ body {
   transform: translate3d(-50%, 5px, 0);
 }
 
-
 .menu ul {
   background: black;
 }
+
 
  /* The side navigation menu */
  .sidenav {
@@ -200,8 +199,6 @@ footer a {
   background-color: #f8f7f7;
 } 
 
-
-
 .pre-req {
   margin-bottom: 0;
 }
@@ -270,6 +267,7 @@ footer a {
   line-height: 1.1em;
 }
 
+
 /* Highlight */
 .post-content pre code {
   display: block;
@@ -308,11 +306,21 @@ footer a {
 /* Unflavored code fences */
 code {
   padding: 20px;
-  
 }
 
 pre {
   border-radius: 6px;
   background-color: #272822;
   color: white;
+}
+
+
+/* Tags */
+.post-view .post-tags {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.post-view footer .post-tags {
+  margin-bottom: 30px;
 }
