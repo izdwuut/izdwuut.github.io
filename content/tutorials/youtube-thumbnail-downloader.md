@@ -465,11 +465,12 @@ thumbs = get_thumbs(api, video_id)
 
 There are still a few steps left. As you might have already seen, the code interlaced with functions definitions doesn't look particularly good. We will eventually put all this in a dedicated class, but I suggest that we start with creating a method that downloads the video thumbnail. This is what we have so far:
 
-{{< highlight python "linenos=table,hl_lines=29 31 42 44-45" >}}
+{{< highlight python "linenos=table,hl_lines=36-39" >}}
 from googleapiclient.discovery import build
 from urllib.request import urlretrieve
 
 API_KEY = 'YOUR_API_KEY'
+SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
 
 
 def get_api(api_key):
@@ -478,11 +479,6 @@ def get_api(api_key):
                   'version': 'v3'}
     api = build(**api_params)
     return api
-
-
-api = get_api(API_KEY)
-
-video_id = 'U-iEK0mlmuQ'
 
 
 def get_thumbs(api, video_id):
@@ -494,10 +490,6 @@ def get_thumbs(api, video_id):
     thumbs = response['items'][0]['snippet']['thumbnails']
     return thumbs
 
-thumbs = get_thumbs(api, video_id)
-
-SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
-
 
 def get_largest_thumb_url(thumbs):
     for size in SIZES:
@@ -507,13 +499,15 @@ def get_largest_thumb_url(thumbs):
     return None
 
 
+api = get_api(API_KEY)
+video_id = 'U-iEK0mlmuQ'
+thumbs = get_thumbs(api, video_id)
 thumb_url = get_largest_thumb_url(thumbs)
-
 filename = 'wallpaper.jpg'
 urlretrieve(thumb_url, filename)
 {{< / highlight >}}
 
-As you can see, I have slightly altered the code. I believe that it's more readable and organized now. I decided to put our `SIZES` list at the top of the file. I think that this way it would be easy to find if there's a need to alter it. I have also made the `api_key` variable a constant and put it next to `SIZES` list.
+As you can see, I have slightly altered the code. I believe that it's more readable and organized now. I decided to put our `SIZES` list at the top of the file. I think that this way it would be easy to find if there's a need to alter it. I have also made the `api_key` variable a constant and put it next to `SIZES` list. Additionally all functions definitions are now at the top of the document.
 
 Using the highlighted lines from the listing above, I have came up with an idea for a function that downloads the thumbnail:
 
@@ -527,7 +521,107 @@ def download_thumb(api, video_id, path='wallpaper.jpg'):
 1. There are a couple of parameters here. Let's break them down:
    * `api` - as the function references other functions that we have defined before, we have to pass an api object, so that they can be properly invoked.
    * `video_id` - an ID of a video
-   * `path` - a path to a saved file. Previously I have written about passing a value of `filename` variable to a `urlretrieve` built-in function. I have came up to a conclusion that `path` is more appropriate (sadly, _appropriatier_ is not a word), as the file can be saved anywhere on your device. It [defaults](https://docs.python.org/3/reference/compound_stmts.html#function-definitions) to `wallpaper.jpg`, which means that the file under that name would appear in the directory where you have fired the script.
+   * `path` - a path to a saved file. I decided to rename it from `filename`. I have came up to a conclusion that `path` is more appropriate (sadly, _appropriatier_ is not a word), as the file can be saved anywhere on your device. It [defaults](https://docs.python.org/3/reference/compound_stmts.html#function-definitions) to `wallpaper.jpg`, which means that the file under that name would appear in the directory where you have fired the script.
 2. Get thumbnails URLs for a given video referenced by it's ID.
 3. Get the largest thumbnail URL.
 4. Save the image using the path provided as a function parameter.
+
+The last logical step would be to create a class that would wrap the code that we have just written. I think that the class concept is easiest to grasp when defined as a container for functions and variables. In that context the former turns into a _method_ and the latter transforms into a _field_. Those terms are often interchangeable. Let's create one!
+
+{{< highlight python "linenos=table,hl_lines=" >}}
+class Uthumer:
+    api = None
+{{< / highlight >}}
+
+1. Define the aforementioned class. I have decided to name it Uthumler because it's a _**You**tube_ _**Thum**bnail_ _Download**er**_. _**You**tube_, hence _u_.
+2. Define a class variable. We will definitely need the Youtube API to perform our query, even if it's [empty](https://docs.python.org/2/library/constants.html#None) for now. We can access it using a dot operator, like so:
+
+{{< highlight python "linenos=table,hl_lines=" >}}
+uthumler = Uthumler()
+uthumler.api
+{{< / highlight >}}
+
+2. 1. Create an instance of our class - an object that gives us access to it's fields and 
+methods. We do this by using our class like a function. We can pass paremeters to it, but we don't need them right now.
+2. 2. Get the `api` field value. It returns nothing, as it's value is `None`, which literally means that there is no value assigned! Actually it's value is set to an object of `NoneType` class, but let's stay in a fairyland a little bit longer.
+
+Now that we are acquainted with classes and objects, let's obtain the API wrapper object. We can convienently copy the `get_api` method that we have written before, with some alterations:
+
+{{< highlight python "linenos=table,hl_lines=" >}}
+class Uthumer:
+    api = None
+
+
+    @property
+    def api(self):
+        if not self.api:
+            api_params = {'developerKey': API_KEY,
+                          'serviceName': 'youtube',
+                          'version': 'v3'}
+            self.api = build(**api_params)
+        return api
+{{< / highlight >}}
+
+
+5. An annotation that makes the following method definition a [property](https://docs.python.org/3/library/functions.html#property). More on it below.
+6. The method that we [decorate](https://docs.python.org/3/glossary.html#term-decorator). Because we have just used the `@property` decorator, it has turned into a getter. It allows for the following trick:
+{{< highlight python "linenos=table,hl_lines=" >}}
+uthumler = Uthumler()
+api = uthumler.api
+type(api)
+{{< / highlight >}}
+   
+   6. 1. Create an object of our class.
+   6. 2. Assign a value of it's `api` field to a variable of the same name. Note that while the names clash, there is no conflict because they have different [scopes](https://docs.python.org/3/reference/executionmodel.html).
+   6. 3. To make sure that I have ended up with a return value of the `api` property, I print it's value using a built-in [`type`](https://docs.python.org/3.7/library/functions.html#type) function. It returns a `<class 'googleapiclient.discovery.Resource'>` object, which is exactly what the `api` property is supposed to return.
+   
+   
+   It's only argument is `self`. It's an internal reference that allows an object to access it's own fields and methods that can vary between objects. [This]((https://docs.python.org/3.7/tutorial/classes.html#class-and-instance-variables)) documentation article describes it in greater depth.
+
+
+
+
+4. api_key move to config
+
+
+{{< highlight python "linenos=table,hl_lines=36-39" >}}
+from googleapiclient.discovery import build
+from urllib.request import urlretrieve
+
+API_KEY = 'YOUR_API_KEY'
+SIZES = ['maxres', 'standard', 'high', 'medium', 'default']
+
+
+def get_api(api_key):
+    api_params = {'developerKey': api_key,
+                  'serviceName': 'youtube',
+                  'version': 'v3'}
+    api = build(**api_params)
+    return api
+
+
+def get_thumbs(api, video_id):
+    request_params = {'id': video_id,
+                      'part': 'snippet',
+                      'fields': 'items(snippet(thumbnails))'}
+    request = api.videos().list(**request_params)
+    response = request.execute()
+    thumbs = response['items'][0]['snippet']['thumbnails']
+    return thumbs
+
+
+def get_largest_thumb_url(thumbs):
+    for size in SIZES:
+        if size in thumbs:
+            thumb_url = thumbs[size]['url']
+            return thumb_url
+    return None
+
+
+api = get_api(API_KEY)
+video_id = 'U-iEK0mlmuQ'
+thumbs = get_thumbs(api, video_id)
+thumb_url = get_largest_thumb_url(thumbs)
+filename = 'wallpaper.jpg'
+urlretrieve(thumb_url, filename)
+{{< / highlight >}}
