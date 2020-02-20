@@ -30,6 +30,7 @@ tags:
     - "CLI"
     - "REPL"
     - "Tutorial"
+type: "tutorials"
 ---
 The idea is pretty simple. Given the URL to a Youtube video, the script spews out it's thumbnail. [See this lovely image?](https://www.youtube.com/watch?v=U-iEK0mlmuQ) It would make for a perfect wallpaper and I wrote a script that does just that.
 

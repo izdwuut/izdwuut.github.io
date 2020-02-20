@@ -9,7 +9,7 @@ pygmentsCodefences = true
     sources = "https://github.com/izdwuut/izdwuut.github.io/tree/dev"
     dateForm = "2006-01-02"
     author = "izdwuut"
-    excludedHomeTypes = ["page", "list"]
+    homeTypes = "posts, tutorials"
 
 [menu]
     [[menu.main]]
