@@ -192,7 +192,7 @@ footer a {
   margin-bottom: 10px;
 }
 
-.bug, .topics, .pre-req, .requirements {
+.bug, .topics, .pre-req, .sources {
   margin: 30px 0;
   border-left: 4px solid rgb(51, 51, 51);
   padding: 15px 25px 15px 25px;
@@ -203,17 +203,17 @@ footer a {
   margin-bottom: 0;
 }
 
-.requirements {
+.sources {
   margin-top: 0;
   background-color: #ebebeb;
   padding-left: 40px;
 }
 
-.requirements i {
+.sources i {
   margin-right: 15px;
 }
 
-.requirements a {
+.sources a {
   text-decoration: none;
   font-style: italic;
 }

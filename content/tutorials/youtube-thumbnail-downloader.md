@@ -1,7 +1,7 @@
 ---
 title: "Create your own Youtube Thumbnail Downloader in Python"
-date: 2018-09-25T06:26:33+02:00
-draft: true
+date: 2020-02-21T11:36:00+02:00
+draft: false
 topics:
     - "HTTP requests"
     - "Python standard library"
@@ -16,8 +16,7 @@ libraries:
     - "configparser"
     - "urllib"
     - "json"
-requirements: "http://"
-github: "https://github.com/izdwuut/utumler"
+sources: "https://github.com/izdwuut/uthumer"
 preReq:
     - "Python interpreter"
     - "Text editor"
@@ -30,8 +29,8 @@ tags:
     - "CLI"
     - "REPL"
     - "Tutorial"
-type: "tutorials"
 ---
+
 The idea is pretty simple. Given the URL to a Youtube video, the script spews out it's thumbnail. [See this lovely image?](https://www.youtube.com/watch?v=U-iEK0mlmuQ) It would make for a perfect wallpaper and I wrote a script that does just that.
 
 How would Python render it possible, you'd ask? By working hand-in-hand with [Youtube API](https://developers.google.com/youtube/v3/), of course! I should seriously reconsider becoming a clown. I have a hunch that it would come as natural to me. Let's face it - my nose naturally turns red when it's cold and my feet are enormously large. Which implies...
@@ -41,13 +40,38 @@ How would Python render it possible, you'd ask? By working hand-in-hand with [Yo
 
 API stands for _Application Programming Interface_. Be prepared for more mumbo-jumbo gibberish down the road. When I use the term, I mean a subset of a service's funcionality that your script can make use of. The use case covered by this tutorial can be brought to life because Youtube API **(the service)** provides an endpoint to download the thumbnail given the video ID. Programmatically speaking it's nothing more than a function. It yields some output **(the thumbnail)** given some parameters **(the Youtube video ID)** or lack thereof. 
 
-To interact with aforementioned API we are going to use a [Google API](https://developers.google.com/api-client-library/python/start/get_started) wrapper - a Python abstraction for the API. It acts like any other library and I believe that it greatly simplifies the task as it doesn't require performing a HTTP call explicitly. It can be conveniently installed from a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) using pip - the default Python's package manager:
-
-{{< highlight bash >}}
-pip install google-api-python-client
-{{< / highlight >}}
+To interact with aforementioned API we are going to use a [Google API](https://developers.google.com/api-client-library/python/start/get_started) wrapper - a Python abstraction for the API. It acts like any other library and I believe that it greatly simplifies the task as it doesn't require performing a HTTP call explicitly. 
 
 We are also going to need an API key - our license to use the interface. [Here](https://developers.google.com/youtube/v3/getting-started#before-you-start) are detailed instruction on how to obtain it. You will be prompted for your project name. In case you were looking for a catchy name, you should be fine with _big-potential-216709_.
+
+# Installing the wraper
+The wrapper can be conveniently installed from a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) using pip - the default Python's package manager. First we need to create a virtual environment. It has it's advantages. For example it allows two projects to depend on different versions of the same packages. It's not necessary, as we could install our packages in global scope, although it's useful.
+
+Invoke the following command to create the virtual environment in directory `venv`:
+
+```
+python -m venv venv
+```
+
+Invoke the below to activate the virtual env (I assume that you run it on Windows using Powershell):
+
+```
+.\venv\Scripts\activate.ps1
+```
+
+The shell should now display `(venv)` in front of current directory:
+
+```
+(venv) PS C:\Uthumer
+```
+
+Run the below to actually install the wrapper:
+
+```
+pip install google-api-python-client
+```
+
+
 
 ## REPL {{% icon color="red" icon="heart" %}}
 Seriously, I think that it's one of the best things about Python. It allows you to test all your crazy ideas in sandbox manner. I always have it open while I work on my code, as it helps me to figure out empirically how a certain method behaves. It also simplifies comming up with an algorithm, as it allows you to examine a code snippet in isolation. The fact that it evaluates your expressions as you enter them (that's what [REPL](https://en.wikipedia.org/wiki/Read–eval–print_loop) stands for) means responsiveness and it makes the whole experience enjoyably fluid.
@@ -671,6 +695,36 @@ if __name__ == '__main__':
 
 Highlighted code is going to be executed only when we invoke the script from CLI, as documented [here](https://docs.python.org/3/library/__main__.html). It wouldn't be executed if a script is imported as a module (which isn't our usecase anyways).
 
+We will need one more method to extract video ID from an URL. It may look like this:
+
+{{< highlight python "linenos=table" >}}
+def get_video_id(self, url):
+    sanitized_url = url.strip('/')
+    if 'youtu.be' in sanitized_url:
+        id = sanitized_url.split('youtu.be/')[1]
+    else:
+        id = sanitized_url.split('watch?v=')[1]
+    return id
+{{< / highlight >}}
+`1.` Our class method that takes Youtube video URL as a parameter.
+
+`2.` Sanitize the URL so it doesn't contain character we don't want.
+
+`3.` Check if it's a shortened URL.
+
+`4.` Split the URL on `youtu.be/`, leaving us with a list that contains our ID on first (`[1]`) position. This can be checked experimentally using REPL:
+
+{{< highlight python "linenos=table" >}}
+url = 'https://youtu.be/DPJjOgg10QU' 
+sanitized_url = url.strip('/')
+if 'youtu.be' in sanitized_url:
+    id = sanitized_url.split('youtu.be/')[1]
+else:
+    id = sanitized_url.split('watch?v=')[1]
+id
+{{< / highlight >}}
+`7.` Display our ID.
+
 # Config
 
 We are going to implement config using python built-in `configparser` module. Let's create a new `settings.ini` file and put out settings in it:
@@ -718,4 +772,52 @@ class Uthumer:
 
 `18.` Split sizes list on a comma. It returns a Python list like we used before.
 
-Done! Python abstractify configs really well. We needed only a few lines of code to come up with our results.
+Done! Python abstractify configs really well. We needed only a few lines of code to achieve what we wanted.
+
+
+# CLI
+
+Adding CLI functionality is pretty straightforward, too. Modify the script like so:
+
+{{< highlight python "linenos=table" >}}
+...
+
+import argparse
+
+...
+
+if __name__ == '__main__':
+    uthumer = Uthumer()
+    parser = argparse.ArgumentParser(description="Downloads a Youtube video thumbnail.")
+    parser.add_argument('url',
+                        help='Youtube video URL',
+                        default=None)
+    parser_args = parser.parse_args()
+    url = parser_args.url
+    if url:
+        video_id = uthumer.get_video_id(url)
+        uthumer.download_thumb(video_id)
+{{< / highlight >}}
+`3.` Import [needed](https://docs.python.org/3/library/argparse.html) library.
+
+`9.` Create a parser object and add custom description to it.
+
+`10.` Add an `url` argument to the parser.
+
+`11.` `url` help message.
+
+`12.` `url` default value if not passed.
+
+`13.` Get arguments.
+
+`14.` Get `url` from the arguments.
+
+`15.` Run code if `url` has been passed. Default `argparse` error message will be displayed if no `url` has been detected.
+
+`16.` Get video ID using the method that we created before.
+
+`17.` Download the thumbnail.
+
+# Final words
+
+The tutorial is over. It came lenghty for a problem this simple. I think that it will make it appeal to beginners better. I made such thing for the first time and I wanted to pour all my knowledge into it. I hope that you enjoyed it!

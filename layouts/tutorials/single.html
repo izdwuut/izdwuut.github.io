@@ -4,32 +4,35 @@
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
     <p class="post-meta">
-    {{ partial "meta.html" . }}
+      {{ partial "meta.html" . }}
     </p>
     <div class="tags">{{ partial "tags.html" . }}</div>
   </header>
   <div class="tutorial-meta">
-      <div class="topics">
-          <h3>Topics covered</h3>
-          <ul>
-              {{ range .Params.topics }}
-          <li>{{ . }}</li>
-              {{ end }}
-          </ul>
-        </div>
-        <div class="pre-req">
-            <h3>Used libraries</h3>
-            <ul>
-                {{ range .Params.libraries }}
-            <li>{{ . }}</li>
-                {{ end }}
-            </ul>
-            
-          </div>
-          <footer class="requirements"><i class="fas fa-download"></i><a href="{{ .Params.requirements }}">Download requirements.txt.</a></footer>
+    <div class="topics">
+      <h3>Topics covered</h3>
+      <ul>
+        {{ range .Params.topics }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ if .Params.libraries }}
+    <div class="pre-req">
+      <h3>Used libraries</h3>
+      <ul>
+        {{ range .Params.libraries }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+    {{ if .Params.sources }}
+    <footer class="sources"><i class="fab fa-github"></i><a href="{{ .Params.sources }}">Sources</a></footer>
+    {{ end }}
   </div>
   <div class="post-content">
-  {{ .Content }}
+    {{ .Content }}
   </div>
   <footer class="post-footer">
     {{ partial "tags.html" . }}

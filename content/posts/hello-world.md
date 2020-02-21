@@ -2,7 +2,6 @@
 title: "IS THIS THING RECORD O hi there!"
 date: 2018-09-14T13:26:33+02:00
 draft: false
-type: "posts"
 ---
 Hello world! I'm Bartosz. Now that I have your attention, why don't you follow this inconspicuous and harmless [link](https://gimmecash.com/) and click OK in every window that appear on your screen? Much obliged.
 
