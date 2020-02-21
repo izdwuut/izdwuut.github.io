@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on izdwuut&#39;s personal place</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on izdwuut&#39;s personal place</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 14 Sep 2018 13:26:33 +0200</lastBuildDate>
-    
-	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>IS THIS THING RECORD O hi there!</title>
-      <link>/posts/hello-world/</link>
-      <pubDate>Fri, 14 Sep 2018 13:26:33 +0200</pubDate>
-      
-      <guid>/posts/hello-world/</guid>
-      <description>Hello world! I&amp;rsquo;m Bartosz. Now that I have your attention, why don&amp;rsquo;t you follow this inconspicuous and harmless link and click OK in every window that appear on your screen? Much obliged.
-This is it! My much awaited blog. Admit it, you was looking forward to check out what nonsensical thoughts I managed to came up with. Wait until you see my prime time commercials. I think (I hope) that it&amp;rsquo;s safe to say that I&amp;rsquo;m going to dedicate this place to some programming-related stuff.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on izdwuut's personal place</title><link>/posts/</link><description>Recent content in Posts on izdwuut's personal place</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Sep 2018 13:26:33 +0200</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>IS THIS THING RECORD O hi there!</title><link>/posts/hello-world/</link><pubDate>Fri, 14 Sep 2018 13:26:33 +0200</pubDate><guid>/posts/hello-world/</guid><description>Hello world! I&amp;rsquo;m Bartosz. Now that I have your attention, why don&amp;rsquo;t you follow this inconspicuous and harmless link and click OK in every window that appear on your screen? Much obliged.
+This is it! My much awaited blog. Admit it, you was looking forward to check out what nonsensical thoughts I managed to came up with. Wait until you see my prime time commercials. I think (I hope) that it&amp;rsquo;s safe to say that I&amp;rsquo;m going to dedicate this place to some programming-related stuff.</description></item></channel></rss>
