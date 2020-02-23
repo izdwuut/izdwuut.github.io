@@ -1,7 +1,7 @@
 ---
 title: "Host a Flask app using Apache and mod_wsgi"
 date: 2020-02-23T13:37:00+02:00
-draft: true
+draft: false
 topics:
     - "Apache"
     - "WSGI"
