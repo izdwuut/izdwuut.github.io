@@ -37,7 +37,7 @@ We start with installing required packages. First, make sure your system is up t
 sudo apt update && upgrade
 ```
 
-We are going to need Apache and Python (+ pip, the package manager) on our system. Issue the following command to install them:
+We are going to need some packages on our system, most notably Apache and Python. Issue the following command to install them:
 
 ```
 sudo apt-get install apache2 libapache2-mod-wsgi-py3 python3 python3-pip python3-venv git curl
@@ -88,7 +88,7 @@ pip3 install -r requirements.txt
 To host our app, we need to copy our sources to `/var/www` directory. Run the following command:
 
 ```
-sudo cp . /var/www/python-wsgi -r
+sudo cp . /var/www/flask-wsgi -r
 ```
 
 To actually run the app, Apache must be configured first.
@@ -137,7 +137,7 @@ Listen 5000
    * `/var/www/flask-wsgi/venv/lib/python3.6/site-packages` - location of site packages in virtual environment. Change the `python3.6` bit if you use different version of Python.
    * `/var/www/flask-wsgi` - location of our script on server
 
-`6.` Create process group `fask-wsgi`.
+`6.` Create process group `flask-wsgi`.
 
 `7.` Set application directory. Note that it points to `app` directory.
 
