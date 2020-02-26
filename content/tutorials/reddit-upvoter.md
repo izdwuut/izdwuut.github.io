@@ -1,6 +1,6 @@
 ---
 title: "Create Reddit upvoter using Python and PRAW"
-date: 2020-02-23T13:37:00+02:00
+date: 2020-02-26T16:05:00+02:00
 draft: false
 topics:
     - "PRAW"
