@@ -1,7 +1,7 @@
 ---
 title: "Create Reddit upvoter using Python and PRAW"
 date: 2020-02-23T13:37:00+02:00
-draft: true
+draft: false
 topics:
     - "PRAW"
     - "API"
@@ -23,7 +23,7 @@ I assume that you have Python installed on your system. The tutorial targets Win
 
 # Registering the application
 
-In order to use PRAW, we need to [register](https://old.reddit.com/prefs/apps/) our script first. Here's how the form may look like:
+In order to use PRAW, we need to [register](https://old.reddit.com/prefs/apps/) our script first. Here's how the form looks like:
 
 ![Registration form](/img/posts/reddit-upvoter/registration-form.png)
 
@@ -48,7 +48,7 @@ Now you can create the Python virtual environment in `venv` directory:
 python -m venv venv
 ```
 
-Then activate it:
+Activate it:
 
 ```
 .\venv\Scripts\activate.ps1
@@ -71,14 +71,14 @@ New-Item upvoter.py
 New-Item settings.ini
 ```
 
-Open the `upvoter.py` file in your favourite editor. First we add some imports:
+Open the `upvoter.py` file in your favourite text editor. First we add some imports:
 
 {{< highlight python "linenos=table" >}}
 import os
 from configparser import ConfigParser
 from praw import Reddit
 {{< / highlight >}}
-1. A package needed to create ConfigParser object.
+1. A package needed to create `ConfigParser` object.
 2. An object that will handle our settings file.
 3. The Python Reddit API Wrapper.
 
@@ -122,11 +122,11 @@ subreddit = test
 
 `2-3.` Fields from [registering the application](#registering-the-application) step. Here we interpolate the variables, meaning that the actual values can be found in system's environmental variables. We externalize them for security purposes. This way we can easily commit our settings file to git and not worry that we expose our sensitive data.
 
-`3-4` Your redditor's username and password.
+`4-5` Your redditor's username and password.
 
-`5.` A string that identifies the app.
+`6.` A string that identifies the app.
 
-`6.` Subreddit that the script will listen to.
+`7.` Subreddit that the script will listen to.
 
 Now we can actually declare our variables. Hit `Windows` + `R` and execute this. I really hate how Windows can make simple tasks hard, but hey! It runs games...
 
@@ -156,7 +156,7 @@ class Upvoter:
 
 # Having fun with REPL
 
-We will create the rest of the script experiemntally, step by step, using Python's [REPL](https://docs.python.org/3/tutorial/interpreter.html). Invoke the following command in Powershell:
+We will create the rest of the script experimentally, step by step, using Python's [REPL](https://docs.python.org/3/tutorial/interpreter.html). Invoke the following command in Powershell:
 
 ```
 python
@@ -188,7 +188,7 @@ Since we are experimenting now, create a thread on [r/test](https://www.reddit.c
 submission = api.submission(url='https://www.reddit.com/r/test/comments/f9tz8c/upvoter_test/')
 {{< / highlight >}}
 
-Having that, we can perform various actions. We are going focus to manipulating karma now. The following line will downvote our post:
+Having that, we can perform various actions. We are going focus on manipulating karma now. The following line will downvote our post:
 
 {{< highlight python >}}
 submission.downvote()
@@ -200,7 +200,7 @@ When you navigate to the thread page in your browser, you should see that it has
 submission.upvote()
 {{< / highlight >}}
 
-Now we are going to do the same with the comments. Obtain them first:
+Now we are going to do the same with comments. Obtain them first:
 
 {{< highlight python >}}
 comments = submission.comments
@@ -227,7 +227,7 @@ for comment in self.api.subreddit('test').stream.comments():
     comment.upvote()
 {{< / highlight >}}
 
-Using stream, new comments are fetched as they are posted. Now that we have it, we can put it all together in text editor/IDE.
+Using stream, new comments are fetched as they are posted. Now that we have it, we can put it all together in text editor.
 
 # Upvote all the things
 
@@ -251,7 +251,7 @@ class Upvoter:
 
 `5-6.` Upvote.
 
-`7.` Print that we have just processed a comment.
+`7.` Print that we have just processed the comment.
 
 The last thing we have to do is to run our script:
 
