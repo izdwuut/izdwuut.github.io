@@ -1,5 +1,3 @@
-/* Body
-============================================================= */
 body:before, body:after {
   content: "";
   position: fixed;
@@ -20,8 +18,7 @@ body {
   border-left: 10px solid black;
   border-right: 10px solid black;
 }
-/* Header
-============================================================= */
+
 .header,
 .home .header {
   background: black;
@@ -54,23 +51,21 @@ body {
   background: black;
 }
 
-
- /* The side navigation menu */
  .sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  height: 100%;
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
   left: 0;
-  background-color: black; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  background-color: black; 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
 }
 
 
-/* The navigation menu links */
+
 .sidenav li a {
   padding: 8px 8px 8px 32px;
   font-size: 25px;
@@ -80,12 +75,12 @@ body {
   white-space: nowrap;
 }
 
-/* When you mouse over the navigation links, change their color */
+
 .sidenav a:hover, .sidenav .active a {
   color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner) */
+
 .sidenav .closebtn {
   position: absolute;
   top: 0;
@@ -94,12 +89,10 @@ body {
   margin-left: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -157,7 +150,6 @@ footer a {
   text-decoration: underline;
 }
 
-/* Lists */
 .inline-bracket-list a:after {
   content: ", ";
 }
@@ -170,12 +162,10 @@ footer a {
   margin-bottom: 15px;
 }
 
-/* Bugs */
 .bug h3 {
   margin-bottom: 5px;
   margin-top: 0;
 }
-
 
 .tutorial-meta h3 {
   margin-top: 15px;
@@ -252,8 +242,6 @@ footer a {
   font-size: 20px;
 }
 
-
-/* Funny bits */
 .funny-bits {
   text-align: center;
   padding-bottom: 25px;
@@ -267,8 +255,6 @@ footer a {
   line-height: 1.1em;
 }
 
-
-/* Highlight */
 .post-content pre code {
   display: block;
 }
@@ -303,7 +289,7 @@ footer a {
   width: 100%;
 }
 
-/* Unflavored code fences */
+
 code {
   padding: 20px;
 }
@@ -314,8 +300,6 @@ pre {
   color: white;
 }
 
-
-/* Tags */
 .post-view .post-tags {
   margin-bottom: 15px;
   margin-top: 15px;
@@ -324,3 +308,4 @@ pre {
 .post-view footer .post-tags {
   margin-bottom: 30px;
 }
+
