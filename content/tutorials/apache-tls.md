@@ -91,17 +91,6 @@ Input the webroot for example.com: (Enter 'c' to cancel): /var/www/example.com
 Do the same for www.example.com:
 
 ```
-Plugins selected: Authenticator webroot, Installer None
-Obtaining a new certificate
-Performing the following challenges:
-http-01 challenge for example.com
-http-01 challenge for www.example.com
-Input the webroot for example.com: (Enter 'c' to cancel): /var/www/example.com            
-```
-
-Select the webroot for www.example.com:
-
-```
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 1: Enter a new webroot
 2: /var/www/example.com
@@ -116,7 +105,7 @@ All set. You should see the following message:
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at
    /etc/letsencrypt/live/example.com/fullchain.pem. Your cert will
-   expire on 2017-10-23. To obtain a new or tweaked version of this
+   expire on 2020-04-02. To obtain a new or tweaked version of this
    certificate in the future, simply run certbot again with the
    "certonly" option. To non-interactively renew *all* of your
    certificates, run "certbot renew"
