@@ -55,4 +55,8 @@ Click on `Add a nameserver`. You need to add 3 nameservers:
 
 ![](/img/posts/digitalocean-domain/domain-com/step-3.png)
 
+The last step is to remove `domain.com` DNS as they are no longer needed:
+
+![](/img/posts/digitalocean-domain/domain-com/step-4.png)
+
 Everything is set. Now you have to wait up to 48h for DNS to propagate and your changes will take efect.
