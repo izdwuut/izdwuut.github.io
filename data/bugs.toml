@@ -1,4 +1,23 @@
 [[bugs]]
+	"where" = "React documentation"
+	"desc" = "A menu item in tutorial didn't get highlighted on click."
+	"ticket" = "https://github.com/facebook/react/issues/19828"
+	"project_url" = "https://reactjs.org/"
+
+[[bugs]]
+	"where" = "React documentation"
+	"desc" = "Some text method parameters in documentatoin were of wrong type."
+	"ticket" = "https://github.com/MrRio/jsPDF/issues/2912"
+	"project_url" = "https://github.com/MrRio/jsPDF"
+	"pr" = "https://github.com/MrRio/jsPDF/pull/2915"
+
+[[bugs]]
+	"where" = "ngx-mask"
+	"desc" = "Const in README example was not initialized"
+	"pr" = "https://github.com/JsDaddy/ngx-mask/pull/796"
+	"project_url" = "https://jsdaddy.github.io/ngx-mask-page"
+
+[[bugs]]
     "where" = "SVG-Edit"
     "desc" = "An imported SVG file gets rendered improperly."
     "ticket" = "https://github.com/SVG-Edit/svgedit/issues/279"
