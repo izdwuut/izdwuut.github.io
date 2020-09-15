@@ -1,0 +1,95 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>Securing Apache on Ubuntu 18.04 with a Let's Encrypt TLS certificate - izdwuut's personal place</title><meta name=description content="Literally every modern site implements TLS certificate. Why don&rsquo;t we do the same? We will use a free certificate issued by Let&rsquo;s Encrypt.
+I assume that you have Ubuntu and Apache up. We will start with issuing the cert. Let&rsquo;s go!
+Issuing the certificate Start with installing Certbot. It will add all requirements for us:
+sudo apt install certbotIssue the cert. I use example.com for an example. Change it for your domain&rsquo;s name:"><meta name=author content="izdwuut"><link rel=stylesheet href=/css/bundle.min.277d2cec16dea5cb8a23754f9b4fb21239187cb45a8ca3269e8ac6831bd12bc8.css integrity="sha256-J30s7BbepcuKI3VPm0+yEjkYfLRajKMmnorGgxvRK8g="><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=icon href=/img/favicon.png><meta name=generator content="Hugo 0.75.1"><link rel=alternate type=application/atom+xml href=/index.xml title="izdwuut's personal place"></head><body class=single><header class=header><button type=button onclick=openNav() class=menu-toggle></button><nav class=sidenav id=mySidenav><a href=javascript:void(0) class=closebtn onclick=closeNav()>&#215;</a><ul><li><a href=/>Home</a></li><li><a href=/tutorials/>Tutorials</a></li><li><a href=/about/>About me</a></li></ul></nav><p class=title><a href=/>izdwuut's personal place</a></p></header><main class=main id=main><article class="post post-view"><header class=post-header><h1 class=post-title>Securing Apache on Ubuntu 18.04 with a Let's Encrypt TLS certificate</h1><p class=post-meta><p class=post-meta>Written on 2020-03-02
+by izdwuut.</p></p><div class=tags><ul class=post-tags><li><a href=/tags/security/>Security</a></li><li><a href=/tags/domains/>Domains</a></li><li><a href=/tags/ubuntu/>Ubuntu</a></li><li><a href=/tags/apache/>Apache</a></li></ul></div></header><div class=tutorial-meta><div class=topics><h3>Topics covered</h3><ul><li>Security</li><li>Domains</li><li>Ubuntu</li><li>Apache</li></ul></div></div><div class=post-content><p>Literally every modern site implements TLS certificate. Why don&rsquo;t we do the same? We will use a free certificate issued by <a href=https://letsencrypt.org/>Let&rsquo;s Encrypt</a>.</p><p>I assume that you have Ubuntu and Apache up. We will start with issuing the cert. Let&rsquo;s go!</p><h1 id=issuing-the-certificate>Issuing the certificate</h1><p>Start with installing Certbot. It will add all requirements for us:</p><pre><code>sudo apt install certbot
+</code></pre><p>Issue the cert. I use <code>example.com</code> for an example. Change it for your domain&rsquo;s name:</p><pre><code>sudo certbot certonly --apache -d example.com -d www.example.com
+</code></pre><p>You will be asked how you want to authenticate. Select 2:</p><pre><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+How would you like to authenticate with the ACME CA?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Spin up a temporary webserver (standalone)
+2: Place files in webroot directory (webroot)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 2
+</code></pre><p>Enter your email:</p><pre><code>Enter email address (used for urgent renewal and security notices) (Enter 'c' to
+cancel): youremail@example.com
+</code></pre><p>Agree with terms of service:</p><pre><code>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel: A
+</code></pre><p>Decide if you want to share your email with EFF:</p><pre><code>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing to share your email address with the Electronic Frontier
+Foundation, a founding partner of the Let's Encrypt project and the non-profit
+organization that develops Certbot? We'd like to send you email about our work
+encrypting the web, EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: N
+</code></pre><p>Enter webroot for example.com:</p><pre><code>Plugins selected: Authenticator webroot, Installer None
+Obtaining a new certificate
+Performing the following challenges:
+http-01 challenge for example.com
+http-01 challenge for www.example.com
+Input the webroot for example.com: (Enter 'c' to cancel): /var/www/example.com
+</code></pre><p>Do the same for <a href=http://www.example.com>www.example.com</a>:</p><pre><code>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Enter a new webroot
+2: /var/www/example.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 1
+Input the webroot for www.example.com: (Enter 'c' to cancel): 2  
+</code></pre><p>All set. You should see the following message:</p><pre><code>IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/example.com/fullchain.pem. Your cert will
+   expire on 2020-04-02. To obtain a new or tweaked version of this
+   certificate in the future, simply run certbot again with the
+   &quot;certonly&quot; option. To non-interactively renew *all* of your
+   certificates, run &quot;certbot renew&quot;
+ - Your account credentials have been saved in your Certbot
+   configuration directory at /etc/letsencrypt. You should make a
+   secure backup of this folder now. This configuration directory will
+   also contain certificates and private keys obtained by Certbot so
+   making regular backups of this folder is ideal.
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</code></pre><p>An entry to <code>/etc/cron.d/certbot</code> will be automatically added so you don&rsquo;t have to worry about your cert expiring.</p><h1 id=configuring-site>Configuring site</h1><p>Issue the following command to modify your site config. Change <code>example.com</code> to the name of your site:</p><pre><code>sudo nano /etc/apache2/sites-available/example.com.conf
+</code></pre><p>Modify the config:</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-apache data-lang=apache><span style=color:#f92672>&lt;VirtualHost</span> <span style=color:#e6db74>*:80</span><span style=color:#f92672>&gt;</span>
+        ServerName example.com
+        ServerAlias www.example.com
+        DocumentRoot <span style=color:#e6db74>/var/www/example.com/</span>
+        Redirect permanent / https://example.com
+<span style=color:#f92672>&lt;/VirtualHost&gt;</span>
+
+<span style=color:#f92672>&lt;VirtualHost</span> <span style=color:#e6db74>*:443</span><span style=color:#f92672>&gt;</span>
+        ...
+
+        SSLEngine <span style=color:#66d9ef>on</span>
+        SSLCertificateFile <span style=color:#e6db74>/etc/letsencrypt/live/example.com/cert.pem</span>
+        SSLCertificateKeyFile <span style=color:#e6db74>/etc/letsencrypt/live/example.com/privkey.pem</span>
+        SSLCertificateChainFile <span style=color:#e6db74>/etc/letsencrypt/live/example.com/chain.pem</span>
+<span style=color:#f92672>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></div><p><code>1.</code> HTTP config.</p><p><code>2-3.</code> Your domain.</p><p><code>4.</code> A directory where your website is stored.</p><p><code>5.</code> Permamently redirect to HTTPS site defined below.</p><p><code>8.</code> HTTPS config.</p><p><code>11.</code> Turn <a href=https://httpd.apache.org/docs/current/mod/mod_ssl.html>SSL Engine</a> on.</p><p><code>12-14.</code> Link to your certificate.</p><p>Restart Apache for the changes to take effect:</p><pre><code>sudo service apache2 restart
+</code></pre><p>That&rsquo;s it. When you go visit your website, you will see a lock on address bar.</p></div><footer class=post-footer><ul class=post-tags><li><a href=/tags/security/>Security</a></li><li><a href=/tags/domains/>Domains</a></li><li><a href=/tags/ubuntu/>Ubuntu</a></li><li><a href=/tags/apache/>Apache</a></li></ul></footer><div class=cd>&#x1F4BF;</div></article></main><footer class=footer><span>Made with <i style=color:red class="fas fa-heart"></i>by
+<a href=/about>Bartosz "izdwuut" Konikiewicz</a></span>
+<span>&#183;</span>
+<span><a href=https://github.com/izdwuut/izdwuut.github.io/tree/dev><img src=/img/github.png class=service-logo> Sources (MIT license)</a></span>
+<span>&#183;</span>
+<span>Fueled by <a href=https://gohugo.io/ target=_blank><img src=/img/hugo.svg class=service-logo></a>️</span></footer><div id=overlay></div><div class=funny-bits></div><script src=/js/bundle.min.4dbe5443171a6f71eaf447210187832a2f892b495e9b77b7f78bf37532a8e11b.js integrity="sha256-Tb5UQxcab3Hq9EchAYeDKi+JK0lem3e394vzdTKo4Rs="></script><script data-no-instant>InstantClick.init();</script></body></html>
