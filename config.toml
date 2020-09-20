@@ -20,3 +20,11 @@ pygmentsCodefences = true
         name = "Tutorials"
         url = "/tutorials/"
         weight = -90
+    [[menu.main]]
+        name = "Reported bugs"
+        url = "/bugs/"
+        weight = -80
+    [[menu.main]]
+        name = "Reviews"
+        url = "/reviews/"
+        weight = -70
