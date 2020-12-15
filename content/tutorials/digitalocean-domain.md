@@ -13,6 +13,8 @@ tags:
     - "DNS"
 ---
 
+_Quick update_: if you need a primer on domains in general, check a [magnificent](https://www.websiteplanet.com/blog/ultimate-guide-to-choosing-a-domain-name/) resource that Alejandra has sent me. Many thanks!
+
 Most of the developers sooner or later will have to buy a domain for one of their projects, let it be hobby or commercial. I had this problem recently and most solutions that I've found were lacking, so I thought of this tutorial.
 
 I assume that you have already bought a domain at [Domain.com](https://domain.com) and have created [a droplet](https://www.digitalocean.com/products/droplets/) on [DigitalOcean](https://www.digitalocean.com). Let's start, shall we?
