@@ -2,6 +2,6 @@
 I assume that you have Ubuntu and Apache up. We will start with issuing the cert. Let&amp;rsquo;s go!
 Issuing the certificate Start with installing Certbot. It will add all requirements for us:
 sudo apt install certbot
-Issue the cert. I use example.com for an example. Change it for your domain&amp;rsquo;s name:</description></item><item><title>Mange a domain with Domain.com and DigitalOcean</title><link>/tutorials/digitalocean-domain/</link><pubDate>Sun, 01 Mar 2020 20:21:00 +0200</pubDate><guid>/tutorials/digitalocean-domain/</guid><description>Most of the developers sooner or later will have to buy a domain for one of their projects, let it be hobby or commercial. I had this problem recently and most solutions that I&amp;rsquo;ve found were lacking, so I thought of this tutorial.
-I assume that you have already bought a domain at Domain.com and have created a droplet on DigitalOcean. Let&amp;rsquo;s start, shall we?
-DigitalOcean&amp;rsquo;s end On your project&amp;rsquo;s page, select Add a domain frtom a dropdown menu:</description></item></channel></rss>
+Issue the cert. I use example.com for an example. Change it for your domain&amp;rsquo;s name:</description></item><item><title>Mange a domain with Domain.com and DigitalOcean</title><link>/tutorials/digitalocean-domain/</link><pubDate>Sun, 01 Mar 2020 20:21:00 +0200</pubDate><guid>/tutorials/digitalocean-domain/</guid><description>Quick update: if you need a primer on domains in general, check a magnificent resource that Alejandra has sent me. Many thanks!
+Most of the developers sooner or later will have to buy a domain for one of their projects, let it be hobby or commercial. I had this problem recently and most solutions that I&amp;rsquo;ve found were lacking, so I thought of this tutorial.
+I assume that you have already bought a domain at Domain.</description></item></channel></rss>
